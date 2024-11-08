@@ -7,9 +7,10 @@ body {
     margin: 0px;
     background-color: #EEE;
     font-family: 'Courier New', verdana;
+    display: flex;
 }
 
-nav {
+#nav {
     background-color: #222;
     width: 290px;
     height: 100%;
@@ -106,11 +107,7 @@ h2 {
 
 #corps {
     height: 100%;
-    position: absolute;
-    top: 0px;
-    left: 300px;
-    right: 0px;
-    margin-top: 30px;
+    display: flex;
 }
 
 .reduit nav {
