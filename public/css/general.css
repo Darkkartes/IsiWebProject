@@ -4,17 +4,17 @@ body {
 }
 
 body {
+    width: 100%;
     margin: 0px;
     background-color: #EEE;
     font-family: 'Courier New', verdana;
     display: flex;
 }
 
-#nav {
+nav {
     background-color: #222;
     width: 290px;
     height: 100%;
-    display: inline-block;
     float: left;
     color: white;
     border-right: 5px solid #3060FF;
@@ -108,6 +108,7 @@ h2 {
 #corps {
     height: 100%;
     display: flex;
+    margin-left: 300px;
 }
 
 .reduit nav {
@@ -206,4 +207,23 @@ article h2 {
     border-radius: 3px;
     padding: 15px;
     text-align: center;
+}
+
+.container {
+    display: flex;
+}
+
+.container>div:first-child {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+.container>div:first-child nav {
+    flex: 1;
+}
+
+.container>div:last-child {
+    flex: 1;
+    margin: 10px;
 }
