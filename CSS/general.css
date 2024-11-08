@@ -80,7 +80,7 @@ h2 {font-size: 1.2em;}
 #onglet_stagiaire::before {background-image:url(../icons/stage.png);}
 #onglet_inscrire::before {background-image:url(../icons/inscrire.png);}
 #onglet_aide::before {background-image:url(../icons/aide.png);}
-#onglet_deconnection::before {background-image:url(../icons/deconnection.png);}
+#onglet_deconnexion::before {background-image:url(../icons/deconnexion.png);}
 
 #icon_droite::before {background-image:url(../icons/droite.png);}
 #icon_gauche::before {background-image:url(../icons/gauche.png);}
