@@ -9,6 +9,15 @@
 		<link rel="stylesheet" href="css/tableau.css">
 		<title>Stage BTS</title>
 	</head>
-
-	{% block content %}{% endblock %}
+	<body>
+		<nav>
+			<a id="onglet_accueil" href="index.php" class="{% block accueil_active %}{% endblock %}">Accueil</a>
+			<a id="onglet_entreprise" href="index.php?name=entreprise" class="{% block entreprise_active %}{% endblock %}">Entreprise</a>
+			<a id="onglet_stagiaire" href="index.php?name=stagiaire" class="{% block stagiaire_active %}{% endblock %}">Stagiaire</a>
+			<a id="onglet_inscrire" href="index.php?name=inscription" class="{% block inscription_active %}{% endblock %}">Inscription</a>
+			<a id="onglet_aide" href="index.php?name=aide" class="{% block aide_active %}{% endblock %}">Aide</a>
+			<a id="onglet_deconnexion" href="index.php?name=deconnexion" class="{% block deconnexion_active %}{% endblock %}">Déconnexion</a>
+		</nav>
+		{% block content %}{% endblock %}
+	</body>
 </html>
