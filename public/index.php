@@ -15,6 +15,8 @@ if (isset($_GET['name']) && $_GET['name'] == 'entreprise') {
     echo $twig->render('view/aide.twig');
 } else if (isset($_GET['name']) && $_GET['name'] == 'inscription') {
     echo $twig->render('view/inscription.twig');
+} else if (isset($_GET['name']) && $_GET['name'] == 'connexion') {
+    echo $twig->render('view/connexion.twig');
 } else {
     echo $twig->render('view/accueil.twig');
 }
