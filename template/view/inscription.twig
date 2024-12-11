@@ -2,83 +2,120 @@
 {% block inscription_active %}actif
 {% endblock %}
 {% block content %}
-	<h1>Inscription</h1>
+	<article>
+		<h1>Inscription</h1>
 
-	<form>
-	<table>
-		<th> Contact </th>
-		<tr>
-			<td> Entreprise<span class=important>*</span> </td>
-			<td> <label for="entreprises"></label>
-				<select required id="entreprises">
-					<option value""> -- select an option -- </option>
-					<option value="A">A</option>
-					<option value="B">B</option>
-					<option value="C">C</option>
-					<option value="D">D</option>
-				</select>
-  			</td>
-		</tr>
-		<tr>
-			<td> Stagiaire<span class=important>*</span> </td>
-			<td> <label for="stagiaires"></label>
-				<select required id="stagiaires">
-					<option value=""> -- select an option -- </option>
-					<option value="A">A</option>
-					<option value="B">B</option>
-					<option value="C">C</option>
-					<option value="D">D</option>
-				</select> </td>
-		</tr>
-		<tr>
-			<td> Professeur<span class=important>*</span> </td>
-			<td>  <label for="professeurs"></label>
-				<select required id="professeurs">
-					<option value""> -- select an option -- </option>
-					<option value="A">A</option>
-					<option value="B">B</option>
-					<option value="C">C</option>
-					<option value="D">D</option>
-				</select> </td>	
-		</tr>
-	</table>
+		<form>
+			<table class="list">
+				<th>
+					Contact
+				</th>
+				<tr>
+					<td>
+						Entreprise<span class="important">*</span>
+					</td>
+					<td>
+						<label for="entreprises"></label>
+						<select required id="entreprises">
+							<option value"">
+								-- select an option --
+							</option>
+							<option value="A">A</option>
+							<option value="B">B</option>
+							<option value="C">C</option>
+							<option value="D">D</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Stagiaire<span class="important">*</span>
+					</td>
+					<td>
+						<label for="stagiaires"></label>
+						<select required id="stagiaires">
+							<option value="">
+								-- select an option --
+							</option>
+							<option value="A">A</option>
+							<option value="B">B</option>
+							<option value="C">C</option>
+							<option value="D">D</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Professeur<span class="important">*</span>
+					</td>
+					<td>
+						<label for="professeurs"></label>
+						<select required id="professeurs">
+							<option value"">
+								-- select an option --
+							</option>
+							<option value="A">A</option>
+							<option value="B">B</option>
+							<option value="C">C</option>
+							<option value="D">D</option>
+						</select>
+					</td>
+				</tr>
+			</table>
 
-	<table>
-	<th> Description du stage </th>
-	<tr>
-		<td>Date de début du stage<span class=important>*</span> :</td>
-		<td><input type="date" name="date_debut" required><td>
-	</tr>
-	<tr>
-		<td>Date de fin du stage<span class=important>*</span> :</td>
-		<td><input type="date" name="date_fin" required><td>
-	</tr>
-	<tr>
-		<td>Type de stage<span class=important>*</span> :</td>
-			<td>  <label for="type"></label>
-				<select id="type">
-					<option value""> -- select an option -- </option>
-					<option value="Aucun">Aucun</option>
-					<option value="Stage">Stage</option>
-					<option value="Alternance">Alterance</option>
-				</select> </td>	
-	</tr>
-	<tr>
-		<td>Description du projet :</td>
-		<td><textarea name="description"></textarea></td>
-	</tr>
-	<tr>
-		<td>Observation :</td>
-		<td><textarea name="observation" span=></textarea></td>
-	</table>
+			<table class="list">
+				<th>
+					Description du stage
+				</th>
+				<tr>
+					<td>Date de début du stage<span class="important">*</span>
+						:</td>
+					<td><input type="date" name="date_debut" required></td>
+				</tr>
+				<tr>
+					<td>Date de fin du stage<span class="important">*</span>
+						:</td>
+					<td><input type="date" name="date_fin" required></td>
+				</tr>
+				<tr>
+					<td>Type de stage<span class="important">*</span>
+						:</td>
+					<td>
+						<label for="type"></label>
+						<select id="type">
+							<option value"">
+								-- select an option --
+							</option>
+							<option value="Aucun">Aucun</option>
+							<option value="Stage">Stage</option>
+							<option value="Alternance">Alterance</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>Description du projet :</td>
+					<td>
+						<textarea name="description"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td>Observation :</td>
+					<td>
+						<textarea name="observation" span=></textarea>
+					</td>
+				</tr>
+			</table>
 
-	<p class="message">
-	Les champs comportant le symbole <span class="important">*</span> sont obligatoires
-	</p>
-	<p>
-		<input type="submit" value="S'inscrire">
-	</form>
+			<p class="message">
+				Les champs comportant le symbole
+				<span class="important">*</span>
+				sont obligatoires
+			</p>
+			<p>
+				<input type="submit" value="S'inscrire">
+			</p>
+		</form>
 
-
+	</article>
 
 {% endblock %}

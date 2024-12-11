@@ -22,10 +22,7 @@
 					<a id="onglet_connexion" href="index.php?name=connexion" class="{% block connexion_active %}{% endblock %}">Connexion</a>
 				</nav>
 			</div>
-
-			<div>
-				{% block content %}{% endblock %}
-			</div>
 		</div>
-	</body>
-</html>
+		<div id="contenu"> {% block content %}{% endblock %}</div>
+		</body>
+	</html>

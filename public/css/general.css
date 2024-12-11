@@ -153,6 +153,7 @@ article p {
     border: 1px solid #B8B8B8;
     padding: 10px;
     margin: 10px 5px 10px 5px;
+    width: 100%;
 }
 
 article h2 {
@@ -161,6 +162,7 @@ article h2 {
 
 #contenu {
     padding: 0px 30px 30px 30px;
+    width: calc(100vw - 290px); /* à changer pour le responsive */
 }
 
 .center {

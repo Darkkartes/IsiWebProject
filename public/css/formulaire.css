@@ -5,6 +5,7 @@ fieldset
     padding: 0px;
     margin-top: 10px;
     margin-bottom: 20px;
+    display:flex;
 }
 
 input, label, select, textarea
@@ -30,12 +31,13 @@ input, select, textarea
 input[type=submit], input[type=button]
 {
     min-width: 0px;
-    width: 150px;
+    width: 100%;
 }
 
 textarea
 {
     min-height: 60px;
+    width:100%;
 }
 
 
