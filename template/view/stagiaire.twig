@@ -2,5 +2,102 @@
 {% block stagiaire_active %}actif
 {% endblock %}
 {% block content %}
-	<h1>Stagiaire</h1>
-{% endblock %}
+
+
+	<!-- Version liste -->
+	<article>
+		<h1>Stagiaire</h1>
+
+		<div>
+			<button id="recherche_stagiaire">Rechercher un stagiaire</button>
+			<button id="ajout_stagiaire">Ajouter un stagiaire</button>
+		</div>
+
+		<table class="list">
+			<tr>
+				<th>Détails</th>
+				<th>Opération</th>
+				<th>Etudiant</th>
+				<th>Entreprise</th>
+				<th>Professeur</th>
+			</tr>
+
+			<!--This is a dummy row to show the structure of the table-->
+			<tr>
+				<td>
+					<a href="stagiaire_details"><img src="../icons/voir.png" alt="details" width="10%"></a>
+				</td>
+				<td>
+					<a href="stagiaire.edit"><img src="../icons/modifier.png" alt="modifier" width="5%"></a>
+					<a href="stagiaire.delete"><img src="../icons/supprimer.png" alt="supprimer" width="5%">
+					</a>
+				</td>
+				<td>A</td>
+				<td>B</td>
+				<td>C</td>
+			</tr>
+
+
+			<!--fix les options de détails/modifications/délétions-->
+			{% for stagiaire in stagiaires %}
+				<tr>
+					<td>
+						<a href="stagiaire_details"><img src="../icons/voir.png" alt="details" width="10%"></a>
+					</td>
+					<td>
+						<a href="stagiaire.edit"><img src="../icons/modifier.png" alt="modifier" width="5%"></a>
+						<a href="stagiaire.delete"><img src="../icons/supprimer.png" alt="supprimer" width="5%">
+						</a>
+					</td>
+					<td>{{ stagiaire.etudiant }}</td>
+					<td>{{ stagiaire.entreprise }}</td>
+					<td>{{ stagiaire.professeur }}</td>
+				</tr>
+			{% endfor %}
+		</table>
+	</article>
+
+
+	<!-- Version ajout -->
+	<article>
+		<h1>Stagiaire</h1>
+
+		<table class="list">
+
+
+			<tr>
+				<th colspan="6">Informations sur le stagiaire</th>
+			</tr>
+
+			<tr>
+				<td>Nom<span class="important">*</span>
+				</td>
+				<td>A</td>
+			</tr>
+			<tr>
+				<td>Prénom<span class="important">*</span>
+				</td>
+				<td>B</td>
+			</tr>
+			<tr>
+				<td>Nom d'utilisateur (8 caractères)<span class="important">*</span>
+				</td>
+				<td>C</td>
+			</tr>
+			<tr>
+				<td>Mot de passe (entre 8 et 30 caractères)<span class="important">*</span>
+				</td>
+				<td>D</td>
+			</tr>
+			<tr>
+				<td>Date d'obtention du diplôme</td>
+				<td>E</td>
+			</tr>
+			<tr>
+				<td>Classe<span class="important">*</span>
+				</td>
+				<td>F</td>
+			</tr>
+		</td>
+	</tr>
+</table></article>{% endblock %}
