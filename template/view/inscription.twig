@@ -5,7 +5,7 @@
 	<article>
 		<h1>Inscription</h1>
 
-		<form>
+		<form method="post">
 			<table class="list">
 				<th colspan="2">
 					Contact
@@ -16,7 +16,7 @@
 					</td>
 					<td>
 						<label for="entreprises"></label>
-						<select required id="entreprises">
+						<select required id="entreprises" name="entreprises">
 							<option value"">
 								-- select an option --
 							</option>
@@ -32,12 +32,12 @@
 					</td>
 					<td>
 						<label for="stagiaires"></label>
-						<select required id="stagiaires">
+						<select required id="stagiaires" name="stagiaires">
 							<option value="">
 								-- select an option --
 							</option>
 							{% for stag in stagiaires %}
-								<option value="{{ stag.id }}">{{ stag.nom_etudiant }}
+								<option value="{{ stag.nom_etudiant }}">{{ stag.nom_etudiant }}
 									{{ stag.prenom_etudiant }}</option>
 							{% endfor %}
 						</select>
@@ -49,7 +49,7 @@
 					</td>
 					<td>
 						<label for="professeurs"></label>
-						<select required id="professeurs">
+						<select required id="professeurs" name="professeurs">
 							<option value"">
 								-- select an option --
 							</option>
@@ -69,19 +69,19 @@
 				<tr>
 					<td>Date de début du stage<span class="important">*</span>
 						:</td>
-					<td><input type="date" name="date_debut" required></td>
+					<td><input type="date" name="date_debut" id="date_debut" required></td>
 				</tr>
 				<tr>
 					<td>Date de fin du stage<span class="important">*</span>
 						:</td>
-					<td><input type="date" name="date_fin" required></td>
+					<td><input type="date" name="date_fin" id="date_fin" required></td>
 				</tr>
 				<tr>
 					<td>Type de stage<span class="important">*</span>
 						:</td>
 					<td>
 						<label for="type"></label>
-						<select id="type">
+						<select id="type" name="type">
 							<option value"">
 								-- select an option --
 							</option>
@@ -94,13 +94,13 @@
 				<tr>
 					<td>Description du projet :</td>
 					<td>
-						<textarea name="description"></textarea>
+						<textarea name="description" id="description"></textarea>
 					</td>
 				</tr>
 				<tr>
 					<td>Observation :</td>
 					<td>
-						<textarea name="observation" span=></textarea>
+						<textarea name="observation" id="observation" span=></textarea>
 					</td>
 				</tr>
 			</table>
@@ -111,7 +111,7 @@
 				sont obligatoires
 			</p>
 			<p>
-				<input type="submit" value="S'inscrire">
+				<button type="submit">Valider</button>
 			</p>
 		</form>
 

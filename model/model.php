@@ -133,3 +133,52 @@ function get_professeurs($db)
     $result = $query->fetchAll(PDO::FETCH_ASSOC);
     return $result;
 }
+
+function addStage($db)
+{
+    $debut_stage = strip_tags($_POST['date_debut']);
+    $fin_stage = strip_tags($_POST['date_fin']);
+    if (isset($_POST['description'])) {
+        $description = strip_tags($_POST['description']);
+    } else {
+        $description = null;
+    }
+    $type_stage = strip_tags($_POST['type']);
+    if (isset($_POST['observation'])) {
+        $observation = strip_tags($_POST['observation']);
+    } else {
+        $observation = null;
+    }
+    $nom_entreprise = strip_tags($_POST['entreprises']);
+    $nom_stagiare = strip_tags($_POST['stagiaires']);
+    $nom_prof = strip_tags($_POST['professeurs']);
+    $sql = 'SELECT num_entreprise FROM `entreprise` where raison_sociale = :nom_entreprise';
+    $query = $db->prepare($sql);
+    $query->bindValue(':nom_entreprise', $nom_entreprise, PDO::PARAM_STR);
+    $query->execute();
+    $num_entreprise = $query->fetch();
+    $sql = 'SELECT num_etudiant FROM `etudiant` where nom_etudiant = :nom_stagiare';
+    $query = $db->prepare($sql);
+    $query->bindValue(':nom_stagiare', $nom_stagiare, PDO::PARAM_STR);
+    $query->execute();
+    $num_stagiare = $query->fetch();
+    $sql = 'SELECT num_prof FROM `professeur` where nom_prof = :nom_prof';
+    $query = $db->prepare($sql);
+    $query->bindValue(':nom_prof', $nom_prof, PDO::PARAM_STR);
+    $query->execute();
+    $num_prof = $query->fetch();
+    $sql = 'INSERT INTO `stage` (debut_stage, fin_stage, desc_projet, type_stage, observation_stage, num_entreprise, num_etudiant, num_prof) 
+            VALUES (:debut_stage, :fin_stage, :desc_projet, :type_stage, :observation_stage, :num_entreprise, :num_etudiant, :num_prof)';
+    $query = $db->prepare($sql);
+    $query->bindValue(':debut_stage', $debut_stage, PDO::PARAM_STR);
+    $query->bindValue(':fin_stage', $fin_stage, PDO::PARAM_STR);
+    $query->bindValue(':desc_projet', $description, PDO::PARAM_STR);
+    $query->bindValue(':type_stage', $type_stage, PDO::PARAM_STR);
+    $query->bindValue(':observation_stage', $observation, PDO::PARAM_STR);
+    $query->bindValue(':num_entreprise', $num_entreprise['num_entreprise'], PDO::PARAM_STR);
+    $query->bindValue(':num_etudiant', $num_stagiare['num_etudiant'], PDO::PARAM_STR);
+    $query->bindValue(':num_prof', $num_prof['num_prof'], PDO::PARAM_STR);
+    $query->execute();
+    $_SESSION['message'] = 'Stage ajouté';
+    header('Location: index.php');
+}

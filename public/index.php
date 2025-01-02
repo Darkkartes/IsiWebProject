@@ -17,14 +17,25 @@ if (returnTrue()) {
     } else if (isset($_GET['name']) && $_GET['name'] == 'aide') {
         echo $twig->render('view/aide.twig');
     } else if (isset($_GET['name']) && $_GET['name'] == 'inscription') {
-        $entreprises = get_entreprises($db);
-        $stagiaires = get_etudiants($db);
-        $professeurs = get_professeurs($db);
-        echo $twig->render('view/inscription.twig', [
-            'stagiaires' => $stagiaires,
-            'entreprises' => $entreprises,
-            'professeurs' => $professeurs
-        ]);
+        if (
+            isset($_POST['date_debut']) && !empty($_POST['date_debut'])
+            && isset($_POST['date_fin']) && !empty($_POST['date_fin'])
+            && isset($_POST['type']) && !empty($_POST['type'])
+            && isset($_POST['entreprises']) && !empty($_POST['entreprises'])
+            && isset($_POST['stagiaires']) && !empty($_POST['stagiaires'])
+            && isset($_POST['professeurs']) && !empty($_POST['professeurs'])
+        ) {
+            addStage($db);
+        } else {
+            $entreprises = get_entreprises($db);
+            $stagiaires = get_etudiants($db);
+            $professeurs = get_professeurs($db);
+            echo $twig->render('view/inscription.twig', [
+                'stagiaires' => $stagiaires,
+                'entreprises' => $entreprises,
+                'professeurs' => $professeurs
+            ]);
+        }
     } else if (isset($_GET['name']) && $_GET['name'] == 'detailsetu') {
         $stagiaire = get_etudiant_par_id($db);
         echo $twig->render('view/details_etu.twig', $stagiaire);
