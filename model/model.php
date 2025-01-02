@@ -58,7 +58,23 @@ function get_specialites_par_entreprise($db, $id)
 
 function get_etudiants($db)
 {
-    $sql = 'SELECT * FROM `etudiant` order by nom_etudiant';
+    $sql = 'SELECT DISTINCT
+                nom_etudiant, 
+                prenom_etudiant, 
+                raison_sociale, 
+                nom_prof, 
+                prenom_prof, 
+                num_etudiant
+            FROM 
+                etudiant 
+            LEFT JOIN 
+                stage USING (num_etudiant) 
+            LEFT JOIN 
+                professeur USING (num_prof) 
+            LEFT JOIN 
+                entreprise USING (num_entreprise)
+            GROUP BY 
+                num_etudiant, nom_etudiant, prenom_etudiant, raison_sociale, nom_prof, prenom_prof;';
     $query = $db->prepare($sql);
     $query->execute();
     $result = $query->fetchAll(PDO::FETCH_ASSOC);

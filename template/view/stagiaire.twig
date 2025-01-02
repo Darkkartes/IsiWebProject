@@ -19,10 +19,10 @@
 				<th>Entreprise</th>
 				<th>Professeur</th>
 			</tr>
-			{% for stag in stagiaires %}
+			{% for etu in etudiants %}
 				<tr>
 					<td>
-						<a href="index.php?id={{ stag.num_etudiant }}&name=detailsetu"><img src="../icons/voir.png" alt="details" width="10%"></a>
+						<a href="index.php?id={{ etu.num_etudiant }}&name=detailsetu"><img src="../icons/voir.png" alt="details" width="10%"></a>
 					</td>
 					<td>
 						<a href="stagiaire.edit"><img src="../icons/modifier.png" alt="modifier" width="5%"></a>
@@ -30,15 +30,15 @@
 						</a>
 					</td>
 					<td>
-						{{ stag.nom_etudiant }}
-						{{ stag.prenom_etudiant }}
+						{{ etu.nom_etudiant }}
+						{{ etu.prenom_etudiant }}
 					</td>
 					<td>
-						{{ stag.raison_sociale }}
+						{{ etu.raison_sociale }}
 					</td>
 					<td>
-						{{ stag.nom_prof }}
-						{{ stag.prenom_prof }}
+						{{ etu.nom_prof }}
+						{{ etu.prenom_prof }}
 					</td>
 				</tr>
 			{% endfor %}
