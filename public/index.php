@@ -7,7 +7,8 @@ $twig   = new Twig\Environment($loader);
 
 if (returnTrue()) {
     if (isset($_GET['name']) && $_GET['name'] == 'entreprise') {
-        echo $twig->render('view/entreprise.twig');
+        $entreprises = get_entreprises($db);
+        echo $twig->render('view/entreprise.twig', ['entreprises' => $entreprises]);
     } else if (isset($_GET['name']) && $_GET['name'] == 'stagiaire') {
         echo $twig->render('view/stagiaire.twig');
     } else if (isset($_GET['name']) && $_GET['name'] == 'deconnexion') {

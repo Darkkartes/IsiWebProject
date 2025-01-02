@@ -3,4 +3,40 @@
 {% endblock %}
 {% block content %}
 	<h1>Entreprise</h1>
+	<table>
+		<thead>
+			<th>Numéro Entreprise</th>
+			<th>Raison Sociale</th>
+			<th>Nom contact</th>
+			<th>Nom Responsable</th>
+			<th>Adresse</th>
+			<th>Code Postal</th>
+			<th>Ville</th>
+			<th>Téléphone</th>
+			<th>Fax</th>
+			<th>Email</th>
+			<th>Site Web</th>
+			<th>Niveau demandé</th>
+			<th>En activité</th>
+		</thead>
+		<tbody>
+			{% for entreprise in entreprises %}
+				<tr>
+					<td>{{ entreprise.num_entreprise }}</td>
+					<td>{{ entreprise.raison_sociale }}</td>
+					<td>{{ entreprise.nom_contact }}</td>
+					<td>{{ entreprise.nom_resp }}</td>
+					<td>{{ entreprise.rue_entreprise }}</td>
+					<td>{{ entreprise.cp_entreprise }}</td>
+					<td>{{ entreprise.ville_entreprise }}</td>
+					<td>{{ entreprise.tel_entreprise }}</td>
+					<td>{{ entreprise.fax_entreprise }}</td>
+					<td>{{ entreprise.email }}</td>
+					<td>{{ entreprise.site_entreprise }}</td>
+					<td>{{ entreprise.niveau }}</td>
+					<td>{{ entreprise.en_activite }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 {% endblock %}
