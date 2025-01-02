@@ -18,9 +18,9 @@ if (returnTrue()) {
         echo $twig->render('view/aide.twig');
     } else if (isset($_GET['name']) && $_GET['name'] == 'inscription') {
         echo $twig->render('view/inscription.twig');
-    } else if (isset($_GET['name']) && $_GET['name'] == 'details') {
+    } else if (isset($_GET['name']) && $_GET['name'] == 'detailsetu') {
         $stagiaire = get_etudiant_par_id($db);
-        echo $twig->render('view/details.twig', $stagiaire);
+        echo $twig->render('view/details_etu.twig', $stagiaire);
     } else {
         echo $twig->render('view/accueil.twig');
     }
