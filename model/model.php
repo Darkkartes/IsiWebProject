@@ -26,23 +26,35 @@ function get_entreprise_par_id($db, $id){
     return $result;
 }
 
-function get_stagiaires($db){
+function get_etudiants($db){
     $sql = 'SELECT * FROM `etudiant`'; 
     $query = $db->prepare($sql); 
     $query->execute(); 
     $result = $query->fetchAll(PDO::FETCH_ASSOC);
     log($result);
-    echo '<script>console.log("function get_stagiaires"); </script>'; 
     return $result;
 }
 
-function get_stagiaire_par_id($db, $id){
+function get_etudiant_par_id($db, $id){
     $id = strip_tags($id);
     $sql = 'SELECT * FROM `etudiant` where num_etudiant = :id'; 
     $query = $db->prepare($sql); 
     $query->bindValue(':id', $id, PDO::PARAM_STR);
     $query->execute(); 
     $result = $query->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+}
+
+function get_stagiaires($db){
+    $sql = 'SELECT nom_etudiant, prenom_etudiant, raison_sociale, nom_prof, prenom_prof 
+            FROM `stage` 
+            join etudiant using (num_etudiant) 
+            join professeur using (num_prof) 
+            join entreprise using (num_entreprise); '; 
+    $query = $db->prepare($sql); 
+    $query->execute(); 
+    $result = $query->fetchAll(PDO::FETCH_ASSOC);
+    log($result);
     return $result;
 }
 
