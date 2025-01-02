@@ -20,10 +20,9 @@
 							<option value"">
 								-- select an option --
 							</option>
-							<option value="A">A</option>
-							<option value="B">B</option>
-							<option value="C">C</option>
-							<option value="D">D</option>
+							{% for entreprise in entreprises %}
+								<option value="{{ entreprise.raison_sociale }}">{{ entreprise.raison_sociale }}</option>
+							{% endfor %}
 						</select>
 					</td>
 				</tr>
@@ -37,10 +36,9 @@
 							<option value="">
 								-- select an option --
 							</option>
-							<option value="A">A</option>
-							<option value="B">B</option>
-							<option value="C">C</option>
-							<option value="D">D</option>
+							{% for stag in stagiaires %}
+								<option value="{{ stag.id }}">{{ stag.nom_etudiant }} {{ stag.prenom_etudiant }}</option>
+							{% endfor %}
 						</select>
 					</td>
 				</tr>
@@ -54,10 +52,9 @@
 							<option value"">
 								-- select an option --
 							</option>
-							<option value="A">A</option>
-							<option value="B">B</option>
-							<option value="C">C</option>
-							<option value="D">D</option>
+							{% for prof in professeurs %}
+								<option value="{{ prof.nom_prof }}">{{ prof.nom_prof }} {{ prof.prenom_prof }}</option>
+							{% endfor %}
 						</select>
 					</td>
 				</tr>

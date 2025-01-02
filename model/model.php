@@ -25,7 +25,8 @@ function get_entreprises($db)
     JOIN 
     specialite USING (num_spec)
     GROUP BY 
-    entreprise.num_entreprise, entreprise.raison_sociale;';
+    entreprise.num_entreprise, entreprise.raison_sociale
+    ORDER BY entreprise.raison_sociale;';
     $query = $db->prepare($sql);
     $query->execute();
     $result = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -57,11 +58,10 @@ function get_specialites_par_entreprise($db, $id)
 
 function get_etudiants($db)
 {
-    $sql = 'SELECT * FROM `etudiant`';
+    $sql = 'SELECT * FROM `etudiant` order by nom_etudiant';
     $query = $db->prepare($sql);
     $query->execute();
     $result = $query->fetchAll(PDO::FETCH_ASSOC);
-    log($result);
     return $result;
 }
 
@@ -104,6 +104,15 @@ function get_stage_par_id($db)
     $sql = 'SELECT * FROM `stage` where num_stage = :id';
     $query = $db->prepare($sql);
     $query->bindValue(':id', $id, PDO::PARAM_STR);
+    $query->execute();
+    $result = $query->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+}
+
+function get_professeurs($db)
+{
+    $sql = 'SELECT * FROM `professeur` order by nom_prof';
+    $query = $db->prepare($sql);
     $query->execute();
     $result = $query->fetchAll(PDO::FETCH_ASSOC);
     return $result;
