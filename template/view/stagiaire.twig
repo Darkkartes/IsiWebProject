@@ -22,7 +22,7 @@
 			{% for etu in etudiants %}
 				<tr>
 					<td>
-						<a href="index.php?id={{ etu.num_etudiant }}&name=detailsetu"><img src="../icons/voir.png" alt="details" width="20%"></a>
+						<a href="index.php?id={{ stag.num_etudiant }}&name=detailsetu" class="center"><img src="../icons/voir.png" alt="details" width="20%"></a>
 					</td>
 					<td>
 						<div class="center">
@@ -30,20 +30,19 @@
 							<a href="stagiaire.delete"><img src="../icons/supprimer.png" alt="supprimer" width="10%"></a>
 						</div>
 					</td>
+					<td>
+						{{ etu.nom_etudiant }}
+						{{ etu.prenom_etudiant }}
+					</td>
+					<td>
+						{{ etu.raison_sociale }}
+					</td>
+					<td>
+						{{ etu.nom_prof }}
+						{{ etu.prenom_prof }}
+					</td>
 				</tr>
-			</td>
-			<td>
-				{{ etu.num_etudiant }}
-				{{ etu.nom_etudiant }}
-				{{ etu.prenom_etudiant }}
-			</td>
-			<td>
-				{{ etu.raison_sociale }}
-			</td>
-			<td>
-				{{ etu.nom_prof }}
-				{{ etu.prenom_prof }}
-			</td>
-		</tr>
-	{% endfor %}
-</table></article>{% endblock %}
+			{% endfor %}
+		</table>
+	</article>
+{% endblock %}
