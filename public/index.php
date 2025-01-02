@@ -5,7 +5,7 @@ require_once('../vendor/autoload.php');
 $loader = new Twig\Loader\FilesystemLoader('../template');
 $twig   = new Twig\Environment($loader);
 
-if (returnFalse()) {
+if (returnTrue()) {
     if (isset($_GET['name']) && $_GET['name'] == 'entreprise') {
         echo $twig->render('view/entreprise.twig');
     } else if (isset($_GET['name']) && $_GET['name'] == 'stagiaire') {
