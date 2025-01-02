@@ -10,7 +10,8 @@ if (returnTrue()) {
         $entreprises = get_entreprises($db);
         echo $twig->render('view/entreprise.twig', ['entreprises' => $entreprises]);
     } else if (isset($_GET['name']) && $_GET['name'] == 'stagiaire') {
-        echo $twig->render('view/stagiaire.twig');
+        $stagiaires = get_stagiaires($db);
+        echo $twig->render('view/stagiaire.twig', ['stagiaires' => $stagiaires]);
     } else if (isset($_GET['name']) && $_GET['name'] == 'deconnexion') {
         echo $twig->render('view/deconnexion.twig');
     } else if (isset($_GET['name']) && $_GET['name'] == 'aide') {
