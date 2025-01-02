@@ -2,44 +2,165 @@
 {% block entreprise_active %}actif
 {% endblock %}
 {% block content %}
-	<h1>Entreprise</h1>
 
+<h1>Entreprise</h1>
 
 	<!-- Version étudiant -->
 	<table class="list">
 		<thead>
-			<th>Numéro Entreprise</th>
-			<th>Raison Sociale</th>
-			<th>Nom contact</th>
-			<th>Nom Responsable</th>
+			<th>Opération</th>
+			<th>Entreprise</th>
+			<th>Responsable</th>
 			<th>Adresse</th>
-			<th>Code Postal</th>
-			<th>Ville</th>
-			<th>Téléphone</th>
-			<th>Fax</th>
-			<th>Email</th>
-			<th>Site Web</th>
-			<th>Niveau demandé</th>
-			<th>En activité</th>
+			<th>Site</th>
+			<th>Spécialité</th>
 		</thead>
 		<tbody>
 			{% for entreprise in entreprises %}
 				<tr>
 					<td>{{ entreprise.num_entreprise }}</td>
 					<td>{{ entreprise.raison_sociale }}</td>
-					<td>{{ entreprise.nom_contact }}</td>
 					<td>{{ entreprise.nom_resp }}</td>
-					<td>{{ entreprise.rue_entreprise }}</td>
-					<td>{{ entreprise.cp_entreprise }}</td>
-					<td>{{ entreprise.ville_entreprise }}</td>
-					<td>{{ entreprise.tel_entreprise }}</td>
-					<td>{{ entreprise.fax_entreprise }}</td>
-					<td>{{ entreprise.email }}</td>
+					<td>{{ entreprise.rue_entreprise }}
+						{{ entreprise.cp_entreprise }}
+						{{ entreprise.ville_entreprise }}</td>
 					<td>{{ entreprise.site_entreprise }}</td>
-					<td>{{ entreprise.niveau }}</td>
-					<td>{{ entreprise.en_activite }}</td>
+					<td> {{ specialite.libelle }} </td>
 				</tr>
 			{% endfor %}
 		</tbody>
 	</table>
+
+
+	<!-- Version détails -->
+	<article>
+		<p>
+			Nom de l'entreprise : {{ entreprise.raison_sociale }} <br>
+			Nom du responsable : {{ entreprise.nom_resp }} <br>
+			Nom du contact : {{ entreprise.nom_contact}}
+		</p>
+
+		<h2>Contact</h2>
+		<p>
+			Adresse : {{ entreprise.rue_entreprise }}
+						{{ entreprise.cp_entreprise }}
+						{{ entreprise.ville_entreprise }}  <br>
+			Téléphone : {{ entreprise.tel_entreprise }} <br>
+			Fixe : {{ entreprise.fixe_entreprise }} <br>
+			Mail : {{ entreprise.email }}
+		</p>
+
+		<h2>Divers</h2>
+		<p>
+			Observation : {{ entreprise.observation }} <br>
+			Site : {{ entreprise.site_entreprise }} <br>
+			Niveau : {{ entreprise.niveau }} <br>
+			Spécialité : {{ specialite.libelle }}
+		</p>
+	</article>
+
+
+
+	<!-- Version inscription -->
+
+		<form>
+			<table class="list">
+				<th>
+					Information
+				</th>
+				<tr>
+					<td>
+						Nom de l'entreprise<span class="important">*</span>
+					</td>
+					<td>
+						<label for="entreprises"></label>
+						<textarea name="description" required></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Nom du contact
+					</td>
+					<td>
+						<label for="nom_contact"></label>
+						<textarea name="description"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Nom du responsable
+					</td>
+					<td>
+						<label for="nom_responsable"></label>
+						<textarea name="description"></textarea>
+					</td>
+				</tr>
+			</table>
+
+			<table class="list">
+				<th>
+					Contact
+				</th>
+				<tr>
+					<td>Rue<span class="important">*</span>:</td>
+					<td><textarea name="rue" required></textarea></td>
+				</tr>
+				<tr>
+					<td>Code postal<span class="important">*</span>:</td>
+					<td><textarea name="code postal" required></textarea></td>
+				</tr>
+				<tr>
+					<td>Ville<span class="important">*</span>:</td>
+					<td><textarea name="ville" required></textarea></td>
+				</tr>
+				<tr>
+					<td>Téléphone<span class="important">*</span>:</td>
+					<td><textarea name="telephone" required></textarea></td>
+				</tr>
+				<tr>
+					<td>Fixe:</td>
+					<td><textarea name="fixe"></textarea></td>
+				</tr>
+				<tr>
+					<td>Mail<span class="important">*</span>:</td>
+					<td><textarea name="mail" required></textarea></td>
+				</tr>
+			</table>
+
+			<table class="list">
+				<th>
+					Divers
+				</th>
+				<tr>
+					<td>Observation:</td>
+					<td><textarea name="observation"></textarea></td>
+				</tr>
+				<tr>
+					<td>Site:</td>
+					<td><textarea name="site"></textarea></td>
+				</tr>
+				<tr>
+					<td>Niveau<span class="important">*</span>:</td>
+					<td><textarea name="niveau" required></textarea></td>
+				</tr>
+				<tr>
+					<td>Spécialité:</td>
+					<td><textarea name="specialite"></textarea></td>
+				</tr>
+
+
+			<p class="message">
+				Les champs comportant le symbole
+				<span class="important">*</span>
+				sont obligatoires
+			</p>
+			<p>
+				<input type="submit" value="S'inscrire">
+			</p>
+		</form>
+
+
+
+
+
 {% endblock %}

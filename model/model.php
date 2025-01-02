@@ -11,7 +11,10 @@ function returnFalse()
 
 function get_entreprises($db)
 {
-    $sql = 'SELECT * FROM `entreprise`';
+    $sql = 'SELECT * FROM `spec_entreprise`
+            join `entreprise` using (num_entreprise)
+            join `specialite` using (num_spec)
+            group by num_entreprise;';
     $query = $db->prepare($sql);
     $query->execute();
     $result = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -21,6 +24,19 @@ function get_entreprise_par_id($db, $id)
 {
     $id = strip_tags($id);
     $sql = 'SELECT * FROM `entreprise` where num_entreprise = :id';
+    $query = $db->prepare($sql);
+    $query->bindValue(':id', $id, PDO::PARAM_STR);
+    $query->execute();
+    $result = $query->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+}
+
+function get_specialites_par_entreprise($db, $id)
+{
+    $id = strip_tags($id);
+    $sql = 'SELECT * FROM `spec_entreprise`
+            join `specialite` using (num_spec);
+            where num_entreprise = :id';
     $query = $db->prepare($sql);
     $query->bindValue(':id', $id, PDO::PARAM_STR);
     $query->execute();
