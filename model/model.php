@@ -11,10 +11,21 @@ function returnFalse()
 
 function get_entreprises($db)
 {
-    $sql = 'SELECT * FROM `spec_entreprise`
-            join `entreprise` using (num_entreprise)
-            join `specialite` using (num_spec)
-            group by num_entreprise;';
+    $sql = 'SELECT 
+    entreprise.num_entreprise,
+    entreprise.raison_sociale,
+    entreprise.rue_entreprise,
+    entreprise.site_entreprise,
+    entreprise.nom_resp,
+    GROUP_CONCAT(specialite.libelle SEPARATOR \',\') AS specialites
+    FROM 
+    spec_entreprise
+    JOIN 
+    entreprise USING (num_entreprise)
+    JOIN 
+    specialite USING (num_spec)
+    GROUP BY 
+    entreprise.num_entreprise, entreprise.raison_sociale;';
     $query = $db->prepare($sql);
     $query->execute();
     $result = $query->fetchAll(PDO::FETCH_ASSOC);

@@ -3,7 +3,7 @@
 {% endblock %}
 {% block content %}
 
-<h1>Entreprise</h1>
+	<h1>Entreprise</h1>
 
 	<!-- Version étudiant -->
 	<table class="list">
@@ -25,7 +25,9 @@
 						{{ entreprise.cp_entreprise }}
 						{{ entreprise.ville_entreprise }}</td>
 					<td>{{ entreprise.site_entreprise }}</td>
-					<td> {{ specialite.libelle }} </td>
+					<td>
+						{{ entreprise.specialites }}
+					</td>
 				</tr>
 			{% endfor %}
 		</tbody>
@@ -35,133 +37,168 @@
 	<!-- Version détails -->
 	<article>
 		<p>
-			Nom de l'entreprise : {{ entreprise.raison_sociale }} <br>
-			Nom du responsable : {{ entreprise.nom_resp }} <br>
-			Nom du contact : {{ entreprise.nom_contact}}
+			Nom de l'entreprise :
+			{{ entreprise.raison_sociale }}
+			<br>
+			Nom du responsable :
+			{{ entreprise.nom_resp }}
+			<br>
+			Nom du contact :
+			{{ entreprise.nom_contact}}
 		</p>
 
 		<h2>Contact</h2>
 		<p>
-			Adresse : {{ entreprise.rue_entreprise }}
-						{{ entreprise.cp_entreprise }}
-						{{ entreprise.ville_entreprise }}  <br>
-			Téléphone : {{ entreprise.tel_entreprise }} <br>
-			Fixe : {{ entreprise.fixe_entreprise }} <br>
-			Mail : {{ entreprise.email }}
+			Adresse :
+			{{ entreprise.rue_entreprise }}
+			{{ entreprise.cp_entreprise }}
+			{{ entreprise.ville_entreprise }}
+			<br>
+			Téléphone :
+			{{ entreprise.tel_entreprise }}
+			<br>
+			Fixe :
+			{{ entreprise.fixe_entreprise }}
+			<br>
+			Mail :
+			{{ entreprise.email }}
 		</p>
 
 		<h2>Divers</h2>
 		<p>
-			Observation : {{ entreprise.observation }} <br>
-			Site : {{ entreprise.site_entreprise }} <br>
-			Niveau : {{ entreprise.niveau }} <br>
-			Spécialité : {{ specialite.libelle }}
+			Observation :
+			{{ entreprise.observation }}
+			<br>
+			Site :
+			{{ entreprise.site_entreprise }}
+			<br>
+			Niveau :
+			{{ entreprise.niveau }}
+			<br>
+			Spécialité :
+			{{ specialite.libelle }}
 		</p>
 	</article>
 
 
-
 	<!-- Version inscription -->
 
-		<form>
-			<table class="list">
-				<th>
-					Information
-				</th>
-				<tr>
-					<td>
-						Nom de l'entreprise<span class="important">*</span>
-					</td>
-					<td>
-						<label for="entreprises"></label>
-						<textarea name="description" required></textarea>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						Nom du contact
-					</td>
-					<td>
-						<label for="nom_contact"></label>
-						<textarea name="description"></textarea>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						Nom du responsable
-					</td>
-					<td>
-						<label for="nom_responsable"></label>
-						<textarea name="description"></textarea>
-					</td>
-				</tr>
-			</table>
+	<form>
+		<table class="list">
+			<th>
+				Information
+			</th>
+			<tr>
+				<td>
+					Nom de l'entreprise<span class="important">*</span>
+				</td>
+				<td>
+					<label for="entreprises"></label>
+					<textarea name="description" required></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Nom du contact
+				</td>
+				<td>
+					<label for="nom_contact"></label>
+					<textarea name="description"></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Nom du responsable
+				</td>
+				<td>
+					<label for="nom_responsable"></label>
+					<textarea name="description"></textarea>
+				</td>
+			</tr>
+		</table>
 
-			<table class="list">
-				<th>
-					Contact
-				</th>
-				<tr>
-					<td>Rue<span class="important">*</span>:</td>
-					<td><textarea name="rue" required></textarea></td>
-				</tr>
-				<tr>
-					<td>Code postal<span class="important">*</span>:</td>
-					<td><textarea name="code postal" required></textarea></td>
-				</tr>
-				<tr>
-					<td>Ville<span class="important">*</span>:</td>
-					<td><textarea name="ville" required></textarea></td>
-				</tr>
-				<tr>
-					<td>Téléphone<span class="important">*</span>:</td>
-					<td><textarea name="telephone" required></textarea></td>
-				</tr>
-				<tr>
-					<td>Fixe:</td>
-					<td><textarea name="fixe"></textarea></td>
-				</tr>
-				<tr>
-					<td>Mail<span class="important">*</span>:</td>
-					<td><textarea name="mail" required></textarea></td>
-				</tr>
-			</table>
+		<table class="list">
+			<th>
+				Contact
+			</th>
+			<tr>
+				<td>Rue<span class="important">*</span>:</td>
+				<td>
+					<textarea name="rue" required></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td>Code postal<span class="important">*</span>:</td>
+				<td>
+					<textarea name="code postal" required></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td>Ville<span class="important">*</span>:</td>
+				<td>
+					<textarea name="ville" required></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td>Téléphone<span class="important">*</span>:</td>
+				<td>
+					<textarea name="telephone" required></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td>Fixe:</td>
+				<td>
+					<textarea name="fixe"></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td>Mail<span class="important">*</span>:</td>
+				<td>
+					<textarea name="mail" required></textarea>
+				</td>
+			</tr>
+		</table>
 
-			<table class="list">
-				<th>
-					Divers
-				</th>
-				<tr>
-					<td>Observation:</td>
-					<td><textarea name="observation"></textarea></td>
-				</tr>
-				<tr>
-					<td>Site:</td>
-					<td><textarea name="site"></textarea></td>
-				</tr>
-				<tr>
-					<td>Niveau<span class="important">*</span>:</td>
-					<td><textarea name="niveau" required></textarea></td>
-				</tr>
-				<tr>
-					<td>Spécialité:</td>
-					<td><textarea name="specialite"></textarea></td>
-				</tr>
-			</table>
+		<table class="list">
+			<th>
+				Divers
+			</th>
+			<tr>
+				<td>Observation:</td>
+				<td>
+					<textarea name="observation"></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td>Site:</td>
+				<td>
+					<textarea name="site"></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td>Niveau<span class="important">*</span>:</td>
+				<td>
+					<textarea name="niveau" required></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td>Spécialité:</td>
+				<td>
+					<textarea name="specialite"></textarea>
+				</td>
+			</tr>
+		</table>
 
 
-			<p class="message">
-				Les champs comportant le symbole
-				<span class="important">*</span>
-				sont obligatoires
-			</p>
-			<p>
-				<input type="submit" value="S'inscrire">
-			</p>
-		</form>
-
-
-
+		<p class="message">
+			Les champs comportant le symbole
+			<span class="important">*</span>
+			sont obligatoires
+		</p>
+		<p>
+			<input type="submit" value="S'inscrire">
+		</p>
+	</form>
 
 
 {% endblock %}
