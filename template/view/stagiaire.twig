@@ -22,12 +22,11 @@
 			{% for etu in etudiants %}
 				<tr>
 					<td>
-						<a href="index.php?id={{ etu.num_etudiant }}&name=detailsetu"><img src="../icons/voir.png" alt="details" width="10%"></a>
+						<a href="index.php?id={{ stag.num_etudiant }}&name=detailsetu"><img src="../icons/voir.png" alt="details" width="20%"></a>
 					</td>
 					<td>
-						<a href="stagiaire.edit"><img src="../icons/modifier.png" alt="modifier" width="5%"></a>
-						<a href="stagiaire.delete"><img src="../icons/supprimer.png" alt="supprimer" width="5%">
-						</a>
+						<a href="stagiaire.edit"><img src="../icons/modifier.png" alt="modifier" width="10%"></a>
+						<a href="stagiaire.delete"><img src="../icons/supprimer.png" alt="supprimer" width="10%"></a>
 					</td>
 					<td>
 						{{ etu.nom_etudiant }}

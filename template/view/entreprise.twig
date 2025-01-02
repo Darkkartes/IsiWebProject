@@ -18,7 +18,9 @@
 		<tbody>
 			{% for entreprise in entreprises %}
 				<tr>
-					<td>{{ entreprise.num_entreprise }}</td>
+					<td><a href="stagiaire.edit"><img src="../icons/modifier.png" alt="modifier" width="20%"></a>
+						<a href="stagiaire.delete"><img src="../icons/supprimer.png" alt="supprimer" width="20%"></a>
+					</td>
 					<td>{{ entreprise.raison_sociale }}</td>
 					<td>{{ entreprise.nom_resp }}</td>
 					<td>{{ entreprise.rue_entreprise }}
@@ -85,7 +87,7 @@
 
 	<form>
 		<table class="list">
-			<th>
+			<th colspan="2">
 				Information
 			</th>
 			<tr>
@@ -118,7 +120,7 @@
 		</table>
 
 		<table class="list">
-			<th>
+			<th colspan="2">
 				Contact
 			</th>
 			<tr>
@@ -160,7 +162,7 @@
 		</table>
 
 		<table class="list">
-			<th>
+			<th colspan="2">
 				Divers
 			</th>
 			<tr>
