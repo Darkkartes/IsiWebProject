@@ -3,7 +3,7 @@ require_once('../model/connect.php');
 require_once('../model/model.php');
 require_once('../vendor/autoload.php');
 $loader = new Twig\Loader\FilesystemLoader('../template');
-$twig   = new Twig\Environment($loader);
+$twig = new Twig\Environment($loader);
 
 if (returnTrue()) {
     if (isset($_GET['name']) && $_GET['name'] == 'entreprise') {
@@ -28,6 +28,13 @@ if (returnTrue()) {
     } else if (isset($_GET['name']) && $_GET['name'] == 'detailsetu') {
         $stagiaire = get_etudiant_par_id($db);
         echo $twig->render('view/details_etu.twig', $stagiaire);
+    } else if (isset($_GET['name']) && $_GET['name'] == 'detailsent') {
+        $entreprise = get_entreprise_par_id($db);
+        echo $twig->render('view/details_ent.twig', $entreprise);
+    } else if (isset($_GET['name']) && $_GET['name'] == 'ajoutent') {
+        echo $twig->render('view/ajout_ent.twig'); 
+    } else if (isset($_GET['name']) && $_GET['name'] == 'ajoutetu') {
+        echo $twig->render('view/ajout_etu.twig'); 
     } else {
         echo $twig->render('view/accueil.twig');
     }

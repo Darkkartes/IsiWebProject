@@ -32,9 +32,9 @@ function get_entreprises($db)
     $result = $query->fetchAll(PDO::FETCH_ASSOC);
     return $result;
 }
-function get_entreprise_par_id($db, $id)
+function get_entreprise_par_id($db)
 {
-    $id = strip_tags($id);
+    $id = strip_tags($_GET['id']);
     $sql = 'SELECT * FROM `entreprise` where num_entreprise = :id';
     $query = $db->prepare($sql);
     $query->bindValue(':id', $id, PDO::PARAM_STR);

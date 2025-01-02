@@ -1,0 +1,51 @@
+{% extends "base.twig" %}
+{% block entreprise_active %}actif
+{% endblock %}
+{% block content %}
+	<article>
+		<h1>Entreprise</h1>
+
+		<p>
+			Nom de l'entreprise :
+			{{ entreprise.raison_sociale }}
+			<br>
+			Nom du responsable :
+			{{ entreprise.nom_resp }}
+			<br>
+			Nom du contact :
+			{{ entreprise.nom_contact}}
+		</p>
+
+		<h2>Contact</h2>
+		<p>
+			Adresse :
+			{{ entreprise.rue_entreprise }}
+			{{ entreprise.cp_entreprise }}
+			{{ entreprise.ville_entreprise }}
+			<br>
+			Téléphone :
+			{{ entreprise.tel_entreprise }}
+			<br>
+			Fixe :
+			{{ entreprise.fixe_entreprise }}
+			<br>
+			Mail :
+			{{ entreprise.email }}
+		</p>
+
+		<h2>Divers</h2>
+		<p>
+			Observation :
+			{{ entreprise.observation }}
+			<br>
+			Site :
+			{{ entreprise.site_entreprise }}
+			<br>
+			Niveau :
+			{{ entreprise.niveau }}
+			<br>
+			Spécialité :
+			{{ specialite.libelle }}
+		</p>
+	</article>
+{% endblock %}
