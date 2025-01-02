@@ -37,7 +37,8 @@
 								-- select an option --
 							</option>
 							{% for stag in stagiaires %}
-								<option value="{{ stag.id }}">{{ stag.nom_etudiant }} {{ stag.prenom_etudiant }}</option>
+								<option value="{{ stag.id }}">{{ stag.nom_etudiant }}
+									{{ stag.prenom_etudiant }}</option>
 							{% endfor %}
 						</select>
 					</td>
@@ -53,7 +54,8 @@
 								-- select an option --
 							</option>
 							{% for prof in professeurs %}
-								<option value="{{ prof.nom_prof }}">{{ prof.nom_prof }} {{ prof.prenom_prof }}</option>
+								<option value="{{ prof.nom_prof }}">{{ prof.nom_prof }}
+									{{ prof.prenom_prof }}</option>
 							{% endfor %}
 						</select>
 					</td>

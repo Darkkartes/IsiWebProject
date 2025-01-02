@@ -18,8 +18,11 @@
 		<tbody>
 			{% for entreprise in entreprises %}
 				<tr>
-					<td><a href="stagiaire.edit"><img src="../icons/modifier.png" alt="modifier" width="20%"></a>
-						<a href="stagiaire.delete"><img src="../icons/supprimer.png" alt="supprimer" width="20%"></a>
+					<td>
+						<div class="center">
+							<a href="stagiaire.edit"><img src="../icons/modifier.png" alt="modifier" width="20%"></a>
+							<a href="stagiaire.delete"><img src="../icons/supprimer.png" alt="supprimer" width="20%"></a>
+						</div>
 					</td>
 					<td>{{ entreprise.raison_sociale }}</td>
 					<td>{{ entreprise.nom_resp }}</td>
