@@ -21,24 +21,6 @@
 				<th>Entreprise</th>
 				<th>Professeur</th>
 			</tr>
-
-			<!--This is a dummy row to show the structure of the table-->
-			<tr>
-				<td>
-					<a href="stagiaire_details"><img src="../icons/voir.png" alt="details" width="10%"></a>
-				</td>
-				<td>
-					<a href="stagiaire.edit"><img src="../icons/modifier.png" alt="modifier" width="5%"></a>
-					<a href="stagiaire.delete"><img src="../icons/supprimer.png" alt="supprimer" width="5%">
-					</a>
-				</td>
-				<td>A</td>
-				<td>B</td>
-				<td>C</td>
-			</tr>
-
-
-			<!--fix les options de détails/modifications/délétions-->
 			{% for stag in stagiaires %}
 				<tr>
 					<td>
@@ -49,7 +31,17 @@
 						<a href="stagiaire.delete"><img src="../icons/supprimer.png" alt="supprimer" width="5%">
 						</a>
 					</td>
-					<td>{{ stag.num_etudiant }}</td>
+					<td>
+						{{ stag.nom_etudiant }}
+						{{ stag.prenom_etudiant }}
+					</td>
+					<td>
+						{{ stag.raison_sociale }}
+					</td>
+					<td>
+						{{ stag.nom_prof }}
+						{{ stag.prenom_prof }}
+					</td>
 				</tr>
 			{% endfor %}
 		</table>
