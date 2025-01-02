@@ -38,20 +38,20 @@ function get_etudiants($db)
     return $result;
 }
 
-function get_etudiant_par_id($db, $id)
+function get_etudiant_par_id($db)
 {
-    $id = strip_tags($id);
+    $id = strip_tags($_GET['id']);
     $sql = 'SELECT * FROM `etudiant` where num_etudiant = :id';
     $query = $db->prepare($sql);
     $query->bindValue(':id', $id, PDO::PARAM_STR);
     $query->execute();
-    $result = $query->fetchAll(PDO::FETCH_ASSOC);
+    $result = $query->fetch();
     return $result;
 }
 
 function get_stagiaires($db)
 {
-    $sql = 'SELECT nom_etudiant, prenom_etudiant, raison_sociale, nom_prof, prenom_prof 
+    $sql = 'SELECT nom_etudiant, prenom_etudiant, raison_sociale, nom_prof, prenom_prof, num_etudiant
             FROM `stage` 
             join `etudiant` using (num_etudiant) 
             join `professeur` using (num_prof) 
@@ -71,9 +71,9 @@ function get_stages($db)
     return $result;
 }
 
-function get_stage_par_id($db, $id)
+function get_stage_par_id($db)
 {
-    $id = strip_tags($id);
+    $id = strip_tags($_GET['id']);
     $sql = 'SELECT * FROM `stage` where num_stage = :id';
     $query = $db->prepare($sql);
     $query->bindValue(':id', $id, PDO::PARAM_STR);
