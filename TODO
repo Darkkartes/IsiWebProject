@@ -1,4 +1,6 @@
-- gestion de connexion
-- gestion du passage consultation liste / modification instances dans Entreprise et Stagiaire
-- gestion des boutons de détails/modifications/délétions de Entreprise et Stagiaire
-- gestion des forms
+- Connexion et rôles
+- Déletions des instances
+- Fix les détails des entreprise
+- Bouton "postuler" pour les étudiants dans la page entreprise 
+    > faire le lien avec la page inscription ?
+    > jsp trop comment faire ça
