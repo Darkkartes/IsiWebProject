@@ -41,8 +41,11 @@ if (returnTrue()) {
         echo $twig->render('view/details_etu.twig', $stagiaire);
     } else if (isset($_GET['name']) && $_GET['name'] == 'detailsent') {
         $entreprise = get_entreprise_par_id($db);
-        echo $twig->render('view/details_ent.twig', $entreprise);
-
+        $specialites = get_specialites_par_entreprise($db);
+        echo $twig->render('view/details_ent.twig', [
+            'entreprise' => $entreprise,
+            'specialites' => $specialites
+        ]);
     } else if (isset($_GET['name']) && $_GET['name'] == 'ajoutetu') {
         if (
             isset($_POST['nom']) && !empty($_POST['nom'])

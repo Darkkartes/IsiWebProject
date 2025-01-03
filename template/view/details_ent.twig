@@ -3,7 +3,8 @@
 {% endblock %}
 {% block content %}
 	<article>
-		<h1>Entreprise</h1>
+		<h1>Entreprise
+			{{ entreprise.num_entreprise }}</h1>
 
 		<p>
 			Nom de l'entreprise :
@@ -45,7 +46,7 @@
 			{{ entreprise.niveau }}
 			<br>
 			Spécialité :
-			{{ entreprise.specialite }}
+			{{ specialites.specialites }}
 		</p>
 	</article>
 {% endblock %}

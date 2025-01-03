@@ -32,6 +32,34 @@ function get_entreprises($db)
     $result = $query->fetchAll(PDO::FETCH_ASSOC);
     return $result;
 }
+
+function get_specialites_par_entreprise($db)
+{
+    $id = strip_tags($_GET['id']);
+    $sql = 'SELECT 
+    entreprise.num_entreprise,
+    entreprise.raison_sociale,
+    entreprise.rue_entreprise,
+    entreprise.site_entreprise,
+    entreprise.nom_resp,
+    GROUP_CONCAT(specialite.libelle SEPARATOR \',\') AS specialites
+    FROM 
+    spec_entreprise
+    JOIN 
+    entreprise USING (num_entreprise)
+    JOIN 
+    specialite USING (num_spec)
+    WHERE entreprise.num_entreprise = :id
+    GROUP BY 
+    entreprise.num_entreprise, entreprise.raison_sociale
+    ORDER BY entreprise.raison_sociale;';
+    $query = $db->prepare($sql);
+    $query->bindValue(':id', $id, PDO::PARAM_STR);
+    $query->execute();
+    $result = $query->fetch();
+    return $result;
+}
+
 function get_entreprise_par_id($db)
 {
     $id = strip_tags($_GET['id']);
@@ -39,22 +67,22 @@ function get_entreprise_par_id($db)
     $query = $db->prepare($sql);
     $query->bindValue(':id', $id, PDO::PARAM_STR);
     $query->execute();
-    $result = $query->fetchAll(PDO::FETCH_ASSOC);
+    $result = $query->fetch();
     return $result;
 }
 
-function get_specialites_par_entreprise($db, $id)
+function get_etudiant_par_id($db)
 {
-    $id = strip_tags($id);
-    $sql = 'SELECT * FROM `spec_entreprise`
-            join `specialite` using (num_spec);
-            where num_entreprise = :id';
+    $id = strip_tags($_GET['id']);
+    $sql = 'SELECT * FROM `etudiant` where num_etudiant = :id';
     $query = $db->prepare($sql);
     $query->bindValue(':id', $id, PDO::PARAM_STR);
     $query->execute();
-    $result = $query->fetchAll(PDO::FETCH_ASSOC);
+    $result = $query->fetch();
     return $result;
 }
+
+
 
 function get_etudiants($db)
 {
@@ -81,16 +109,6 @@ function get_etudiants($db)
     return $result;
 }
 
-function get_etudiant_par_id($db)
-{
-    $id = strip_tags($_GET['id']);
-    $sql = 'SELECT * FROM `etudiant` where num_etudiant = :id';
-    $query = $db->prepare($sql);
-    $query->bindValue(':id', $id, PDO::PARAM_STR);
-    $query->execute();
-    $result = $query->fetch();
-    return $result;
-}
 
 function get_stagiaires($db)
 {
@@ -301,7 +319,7 @@ function addEntreprise($db)
         $query->bindValue(':spec', $specialite, PDO::PARAM_STR);
         $query->execute();
         $result = $query->fetch();
-        
+
         if (!empty($result)) {
             $sql = 'INSERT INTO `spec_entreprise` (num_entreprise, num_spec) 
                                 VALUES (:num_entreprise, :num_spec)';
@@ -333,5 +351,4 @@ function addEntreprise($db)
 
     $_SESSION['message'] = 'Entreprise ajoutée';
     header('Location: index.php');
-
 }
