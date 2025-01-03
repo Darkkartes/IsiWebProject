@@ -2,9 +2,68 @@
 {% block stagiaire_active %}actif
 {% endblock %}
 {% block content %}
-    <article>
-    <h1>Ajouter un stagiaire</h1>
-    </article>
+	<article>
+		<h1>Ajouter un stagiaire</h1>
+
+		<form method="post">
+			<table class="list">
+				<thead>
+					<th colspan="6">Informations sur le stagiaire</th>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Nom<span class="important">*</span>
+						</td>
+						<td>
+							<textarea name="nom" id="nom" required></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td>Prénom<span class="important">*</span>
+						</td>
+						<td>
+							<textarea name="prenom" id="prenom" required></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td>Nom d'utilisateur (8 caractères)<span class="important">*</span>
+						</td>
+						<td>
+							<textarea name="utilisateur" id="utilisateur" required></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td>Mot de passe (entre 8 et 30 caractères)<span class="important">*</span>
+						</td>
+						<td>
+							<textarea name="mdp" id="mdp" required></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td>Date d'obtention du diplôme</td>
+						<td><input type="date" name="date" id="date"></td>
+					</tr>
+					<tr>
+						<td>Classe<span class="important">*</span>
+						</td>
+						<td>
+							<textarea name="classe" id="classe" required></textarea>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<p class="message">
+				Les champs comportant le symbole
+				<span class="important">*</span>
+				sont obligatoires
+			</p>
+
+			<input type="submit" value="S'inscrire">
+
+		</form>
+
+	</article>
 
 
 {% endblock %}

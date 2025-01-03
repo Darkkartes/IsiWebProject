@@ -42,10 +42,20 @@ if (returnTrue()) {
     } else if (isset($_GET['name']) && $_GET['name'] == 'detailsent') {
         $entreprise = get_entreprise_par_id($db);
         echo $twig->render('view/details_ent.twig', $entreprise);
-    } else if (isset($_GET['name']) && $_GET['name'] == 'ajoutent') {
-        echo $twig->render('view/ajout_ent.twig'); 
     } else if (isset($_GET['name']) && $_GET['name'] == 'ajoutetu') {
-        echo $twig->render('view/ajout_etu.twig'); 
+        if (
+            isset($_POST['nom']) && !empty($_POST['nom'])
+            && isset($_POST['prenom']) && !empty($_POST['prenom'])
+            && isset($_POST['utilisateur']) && !empty($_POST['utilisateur'])
+            && isset($_POST['mdp']) && !empty($_POST['mdp'])
+            && isset($_POST['classe']) && !empty($_POST['classe'])
+        ) {
+            addEtudiant($db);
+        } else {
+            echo $twig->render('view/ajout_etu.twig');
+        }
+    } else if (isset($_GET['name']) && $_GET['name'] == 'ajoutent') {
+        echo $twig->render('view/ajout_ent.twig');
     } else {
         echo $twig->render('view/accueil.twig');
     }

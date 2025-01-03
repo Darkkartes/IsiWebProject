@@ -182,3 +182,32 @@ function addStage($db)
     $_SESSION['message'] = 'Stage ajouté';
     header('Location: index.php');
 }
+
+function addEtudiant($db){
+    $nom = strip_tags($_POST['nom']);
+    $prenom = strip_tags($_POST['prenom']);
+    $nom_utilisateur = strip_tags($_POST['utilisateur']);
+    $mdp = strip_tags($_POST['mdp']);
+    if (isset($_POST['date'])) {
+        $date_diplome = strip_tags($_POST['date']);
+    } else {
+        $date_diplome = null;
+    }
+    $classe = strip_tags($_POST['classe']);
+
+    $sql = 'INSERT INTO `etudiant` (nom_etudiant, prenom_etudiant, annee_obtention, login, mdp, num_classe) 
+            VALUES (:nom, :prenom, :diplome, :login, :mdp, :classe)';
+    $query = $db->prepare($sql);
+
+    $query->bindValue(':nom', $nom, PDO::PARAM_STR);
+    $query->bindValue(':prenom', $prenom, PDO::PARAM_STR);
+    $query->bindValue(':login', $nom_utilisateur, PDO::PARAM_STR);
+    $query->bindValue(':mdp', $mdp, PDO::PARAM_STR);
+    $query->bindValue(':classe', $classe, PDO::PARAM_STR);
+    $query->bindValue(':diplome', $date_diplome, PDO::PARAM_STR);
+
+    $query->execute();
+    $_SESSION['message'] = 'Etudiant ajouté';
+    header('Location: index.php');
+
+}

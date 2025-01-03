@@ -3,7 +3,7 @@
 {% endblock %}
 {% block content %}
 
-    <h1>Ajouter une entreprise</h1>
+	<h1>Ajouter une entreprise</h1>
 	<form>
 		<table class="list">
 			<th colspan="2">
@@ -14,8 +14,7 @@
 					Nom de l'entreprise<span class="important">*</span>
 				</td>
 				<td>
-					<label for="entreprises"></label>
-					<textarea name="description" required></textarea>
+					<textarea name="entreprise" required></textarea>
 				</td>
 			</tr>
 			<tr>
@@ -23,8 +22,7 @@
 					Nom du contact
 				</td>
 				<td>
-					<label for="nom_contact"></label>
-					<textarea name="description"></textarea>
+					<textarea name="nom_contact"></textarea>
 				</td>
 			</tr>
 			<tr>
@@ -32,8 +30,7 @@
 					Nom du responsable
 				</td>
 				<td>
-					<label for="nom_responsable"></label>
-					<textarea name="description"></textarea>
+					<textarea name="nom_responsable"></textarea>
 				</td>
 			</tr>
 		</table>
@@ -116,9 +113,7 @@
 			<span class="important">*</span>
 			sont obligatoires
 		</p>
-		<p>
-			<input type="submit" value="S'inscrire">
-		</p>
+		<input type="submit" value="S'inscrire">
 	</form>
 
 
