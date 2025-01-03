@@ -42,6 +42,7 @@ if (returnTrue()) {
     } else if (isset($_GET['name']) && $_GET['name'] == 'detailsent') {
         $entreprise = get_entreprise_par_id($db);
         echo $twig->render('view/details_ent.twig', $entreprise);
+
     } else if (isset($_GET['name']) && $_GET['name'] == 'ajoutetu') {
         if (
             isset($_POST['nom']) && !empty($_POST['nom'])
@@ -55,7 +56,19 @@ if (returnTrue()) {
             echo $twig->render('view/ajout_etu.twig');
         }
     } else if (isset($_GET['name']) && $_GET['name'] == 'ajoutent') {
-        echo $twig->render('view/ajout_ent.twig');
+        if (
+            isset($_POST['entreprise']) && !empty($_POST['entreprise'])
+            && isset($_POST['rue']) && !empty($_POST['rue'])
+            && isset($_POST['ville']) && !empty($_POST['ville'])
+            && isset($_POST['code_postal']) && !empty($_POST['code_postal'])
+            && isset($_POST['telephone']) && !empty($_POST['telephone'])
+            && isset($_POST['mail']) && !empty($_POST['mail'])
+            && isset($_POST['niveau']) && !empty($_POST['niveau'])
+        ) {
+            addEntreprise($db);
+        } else {
+            echo $twig->render('view/ajout_ent.twig');
+        }
     } else {
         echo $twig->render('view/accueil.twig');
     }

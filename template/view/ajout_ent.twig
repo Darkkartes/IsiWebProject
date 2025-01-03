@@ -4,7 +4,7 @@
 {% block content %}
 
 	<h1>Ajouter une entreprise</h1>
-	<form>
+	<form method="post">
 		<table class="list">
 			<th colspan="2">
 				Information
@@ -14,7 +14,7 @@
 					Nom de l'entreprise<span class="important">*</span>
 				</td>
 				<td>
-					<textarea name="entreprise" required></textarea>
+					<textarea name="entreprise" id="entreprise" required></textarea>
 				</td>
 			</tr>
 			<tr>
@@ -22,7 +22,7 @@
 					Nom du contact
 				</td>
 				<td>
-					<textarea name="nom_contact"></textarea>
+					<textarea name="nom_contact" id="nom_contact"></textarea>
 				</td>
 			</tr>
 			<tr>
@@ -30,7 +30,7 @@
 					Nom du responsable
 				</td>
 				<td>
-					<textarea name="nom_responsable"></textarea>
+					<textarea name="nom_responsable" id ="nom_responsable"></textarea>
 				</td>
 			</tr>
 		</table>
@@ -42,37 +42,37 @@
 			<tr>
 				<td>Rue<span class="important">*</span>:</td>
 				<td>
-					<textarea name="rue" required></textarea>
+					<textarea name="rue" id="rue" required></textarea>
 				</td>
 			</tr>
 			<tr>
 				<td>Code postal<span class="important">*</span>:</td>
 				<td>
-					<textarea name="code postal" required></textarea>
+					<textarea name="code_postal" id="code_postal" required></textarea>
 				</td>
 			</tr>
 			<tr>
 				<td>Ville<span class="important">*</span>:</td>
 				<td>
-					<textarea name="ville" required></textarea>
+					<textarea name="ville" id="ville" required></textarea>
 				</td>
 			</tr>
 			<tr>
 				<td>Téléphone<span class="important">*</span>:</td>
 				<td>
-					<textarea name="telephone" required></textarea>
+					<textarea name="telephone" id="telephone" required></textarea>
 				</td>
 			</tr>
 			<tr>
 				<td>Fixe:</td>
 				<td>
-					<textarea name="fixe"></textarea>
+					<textarea name="fixe" id="fixe"></textarea>
 				</td>
 			</tr>
 			<tr>
 				<td>Mail<span class="important">*</span>:</td>
 				<td>
-					<textarea name="mail" required></textarea>
+					<textarea name="mail" id="mail" required></textarea>
 				</td>
 			</tr>
 		</table>
@@ -84,25 +84,25 @@
 			<tr>
 				<td>Observation:</td>
 				<td>
-					<textarea name="observation"></textarea>
+					<textarea name="observation" id="observation"></textarea>
 				</td>
 			</tr>
 			<tr>
 				<td>Site:</td>
 				<td>
-					<textarea name="site"></textarea>
+					<textarea name="site" id="site"></textarea>
 				</td>
 			</tr>
 			<tr>
 				<td>Niveau<span class="important">*</span>:</td>
 				<td>
-					<textarea name="niveau" required></textarea>
+					<textarea name="niveau" id="niveau" required></textarea>
 				</td>
 			</tr>
 			<tr>
 				<td>Spécialité:</td>
 				<td>
-					<textarea name="specialite"></textarea>
+					<textarea name="specialite" id="specialite"></textarea>
 				</td>
 			</tr>
 		</table>
@@ -115,6 +115,5 @@
 		</p>
 		<input type="submit" value="S'inscrire">
 	</form>
-
 
 {% endblock %}

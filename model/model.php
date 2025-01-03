@@ -183,7 +183,8 @@ function addStage($db)
     header('Location: index.php');
 }
 
-function addEtudiant($db){
+function addEtudiant($db)
+{
     $nom = strip_tags($_POST['nom']);
     $prenom = strip_tags($_POST['prenom']);
     $nom_utilisateur = strip_tags($_POST['utilisateur']);
@@ -208,6 +209,129 @@ function addEtudiant($db){
 
     $query->execute();
     $_SESSION['message'] = 'Etudiant ajouté';
+    header('Location: index.php');
+}
+
+function addEntreprise($db)
+{
+    $entreprise = strip_tags($_POST['entreprise']);
+    $rue = strip_tags($_POST['rue']);
+    $code_postal = strip_tags($_POST['code_postal']);
+    $ville = strip_tags($_POST['ville']);
+    $telephone = strip_tags($_POST['telephone']);
+    $mail = strip_tags($_POST['mail']);
+    $niveau = strip_tags($_POST['niveau']);
+    if (isset($_POST['nom_contact'])) {
+        $nom_contact = strip_tags($_POST['nom_contact']);
+    } else {
+        $nom_contact = null;
+    }
+    if (isset($_POST['nom_responsable'])) {
+        $nom_responsable = strip_tags($_POST['nom_responsable']);
+    } else {
+        $nom_responsable = null;
+    }
+    if (isset($_POST['fixe'])) {
+        $fixe = strip_tags($_POST['fixe']);
+    } else {
+        $fixe = null;
+    }
+    if (isset($_POST['observation'])) {
+        $observation = strip_tags($_POST['observation']);
+    } else {
+        $observation = null;
+    }
+    if (isset($_POST['site'])) {
+        $site = strip_tags($_POST['site']);
+    } else {
+        $site = null;
+    }
+
+    $sql = 'INSERT INTO `entreprise` (raison_sociale, 
+                                        nom_contact, 
+                                        nom_resp, 
+                                        rue_entreprise, 
+                                        cp_entreprise, 
+                                        ville_entreprise, 
+                                        tel_entreprise, 
+                                        fax_entreprise, 
+                                        email, 
+                                        observation, 
+                                        site_entreprise, 
+                                        niveau) 
+            VALUES (:entreprise, 
+                    :nom_contact, 
+                    :nom_responsable, 
+                    :rue, 
+                    :code_postal, 
+                    :ville, 
+                    :telephone, 
+                    :fixe, 
+                    :mail, 
+                    :observation, 
+                    :site, 
+                    :niveau)';
+    $query = $db->prepare($sql);
+
+    $query->bindValue(':entreprise', $entreprise, PDO::PARAM_STR);
+    $query->bindValue(':nom_contact', $nom_contact, PDO::PARAM_STR);
+    $query->bindValue(':nom_responsable', $nom_responsable, PDO::PARAM_STR);
+    $query->bindValue(':rue', $rue, PDO::PARAM_STR);
+    $query->bindValue(':code_postal', $code_postal, PDO::PARAM_STR);
+    $query->bindValue(':ville', $ville, PDO::PARAM_STR);
+    $query->bindValue(':telephone', $telephone, PDO::PARAM_STR);
+    $query->bindValue(':fixe', $fixe, PDO::PARAM_STR);
+    $query->bindValue(':mail', $mail, PDO::PARAM_STR);
+    $query->bindValue(':observation', $observation, PDO::PARAM_STR);
+    $query->bindValue(':site', $site, PDO::PARAM_STR);
+    $query->bindValue(':niveau', $niveau, PDO::PARAM_STR);
+    $query->execute();
+
+    if (isset($_POST['specialite'])) {
+        $specialite = strip_tags($_POST['specialite']);
+        $sql = 'SELECT num_entreprise FROM `entreprise` where raison_sociale = :entreprise
+                ORDER BY num_entreprise DESC LIMIT 1';
+        $query = $db->prepare($sql);
+        $query->bindValue(':entreprise', $entreprise, PDO::PARAM_STR);
+        $query->execute();
+        $id = $query->fetch();
+
+        $sql = 'SELECT * from `specialite` where libelle = :spec LIMIT 1';
+        $query = $db->prepare($sql);
+        $query->bindValue(':spec', $specialite, PDO::PARAM_STR);
+        $query->execute();
+        $result = $query->fetch();
+        
+        if (!empty($result)) {
+            $sql = 'INSERT INTO `spec_entreprise` (num_entreprise, num_spec) 
+                                VALUES (:num_entreprise, :num_spec)';
+            $query = $db->prepare($sql);
+            $query->bindValue(':num_entreprise', $id['num_entreprise'], PDO::PARAM_STR);
+            $query->bindValue(':num_spec', $result['num_spec'], PDO::PARAM_STR);
+            $query->execute();
+        } else {
+            $sql = 'INSERT INTO `specialite` (libelle) 
+                VALUES (:spec)';
+            $query = $db->prepare($sql);
+            $query->bindValue(':spec', $specialite, PDO::PARAM_STR);
+            $query->execute();
+
+            $sql = 'SELECT * FROM `specialite` where libelle = :spec LIMIT 1';
+            $query = $db->prepare($sql);
+            $query->bindValue(':spec', $specialite, PDO::PARAM_STR);
+            $query->execute();
+            $result = $query->fetch();
+
+            $sql = 'INSERT INTO `spec_entreprise` (num_entreprise, num_spec) 
+                VALUES (:num_entreprise, :num_spec)';
+            $query = $db->prepare($sql);
+            $query->bindValue(':num_entreprise', $id['num_entreprise'], PDO::PARAM_STR);
+            $query->bindValue(':num_spec', $result['num_spec'], PDO::PARAM_STR);
+            $query->execute();
+        }
+    }
+
+    $_SESSION['message'] = 'Entreprise ajoutée';
     header('Location: index.php');
 
 }
