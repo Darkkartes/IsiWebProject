@@ -115,6 +115,20 @@ function delete_etudiant($db)
     header('Location: index.php?name=stagiaire');
 }
 
+function delete_entreprise($db){
+    $id = strip_tags($_GET['id']);
+    $sql = 'DELETE FROM `spec_entreprise` where num_entreprise = :id';
+    $query = $db->prepare($sql);
+    $query->bindValue(':id', $id, PDO::PARAM_STR);
+    $query->execute();
+    $sql = 'DELETE FROM `entreprise` where num_entreprise = :id';
+    $query = $db->prepare($sql);
+    $query->bindValue(':id', $id, PDO::PARAM_STR);
+    $query->execute();
+    $_SESSION['message'] = 'Entreprise supprimée';
+    header('Location: index.php?name=entreprise');
+}
+
 function get_stages($db)
 {
     $sql = 'SELECT * FROM `stage`';
