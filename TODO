@@ -1,5 +1,6 @@
 - Connexion et rôles
-- Déletions des instances
 - Bouton "postuler" pour les étudiants dans la page entreprise 
-    > faire le lien avec la page inscription ?
     > jsp trop comment faire ça
+    > option 1 : faire le lien avec la page inscription ?
+    > option 2 : envoi un "mail automatique" à l'adresse mail de l'entreprise, 
+                    contenant les détails de l'élève
