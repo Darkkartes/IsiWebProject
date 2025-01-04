@@ -4,6 +4,9 @@ require_once('../model/model.php');
 require_once('../vendor/autoload.php');
 $loader = new Twig\Loader\FilesystemLoader('../template');
 $twig = new Twig\Environment($loader);
+$_SESSION = array();
+$_SESSION['connected'] = false;
+$twig->addGlobal('session', $_SESSION);
 
 if (returnTrue()) {
     if (isset($_GET['name']) && $_GET['name'] == 'entreprise') {
@@ -85,8 +88,21 @@ if (returnTrue()) {
     } else {
         echo $twig->render('view/accueil.twig');
     }
-    
 } else {
+    if (isset($_POST['utilisateur']) && !empty($_POST['utilisateur']) 
+    && isset($_POST['mdp']) && !empty($_POST['mdp'])) {
+        if ($_POST['role']=='etudiant'){
+            connexionEtudiant($db);
+        }
+        else if ($_POST['role']=='professeur'){
+            connexionProfesseur($db);
+        }
+        if ($_SESSION['connected']) {
+            echo $twig->render('view/accueil.twig');
+        } else {
+            echo $twig->render('view/connexion.twig');
+        }
+    }
     echo $twig->render('view/connexion.twig');
 }
 require_once('../model/close.php');

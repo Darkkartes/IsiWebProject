@@ -1,33 +1,35 @@
 {% extends "base.twig" %}
-{% block accueil_active %}actif
+{% block connexion_active %}actif
 {% endblock %}
 {% block content %}
 	<div class="message">
-		<h1>Gestion des stagess</h1>
+		<h1>Gestion des stages</h1>
 		Vous n'êtes pas connecté. Identifiez-vous pour poursuivre la navigation.
 	</div>
 
-    <br>
+	<br>
 
 	<div class="message">
-		<form action="submit" method="post">
+		<form method="post">
 			<div class="form-group">
-				<label for="login">Login</label>
+				Login :
 				<input type="text" class="form-control" id="login" name="login" required>
 			</div>
 			<div class="form-group">
-				<label for="mdp">Mot de passe</label>
+				Mot de passe :
 				<input type="password" class="form-control" id="mdp" name="mdp" required>
 			</div>
 			<div class="form-group form-check">
 				Vous êtes :
-				<input type="radio" id="etudiant" name="type" value="Etudiant">
-				<label for="etudiant">Etudiant</label><br>
-				<input type="radio" id="professeur" name="type" value="Professeur">
-				<label for="professeur">Professeur</label><br>
+				<div class="center">
+					<label for="etudiant">Etudiant<input type="radio" id="etudiant" name="type" value="Etudiant" required></label>
+				</div>
+				<div class="center">
+					<label for="professeur">Professeur<input type="radio" id="professeur" name="type" value="Professeur" required></label>
+				</div>
 			</div>
 
-		<button type="submit">Connexion</button>
-        </form>
+			<input type="submit" value="Connexion">
+		</form>
 	</div>
 </form>{% endblock %}

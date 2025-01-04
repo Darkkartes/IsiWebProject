@@ -358,3 +358,45 @@ function addEntreprise($db)
     $_SESSION['message'] = 'Entreprise ajoutée';
     header('Location: index.php?name=entreprise');
 }
+
+function connexionEtudiant($db){
+    $login = strip_tags($_POST['login']);
+    $mdp = strip_tags($_POST['mdp']);
+    $sql = 'SELECT * FROM `etudiant` where login = :login and mdp = :mdp';
+    $query = $db->prepare($sql);
+    $query->bindValue(':login', $login, PDO::PARAM_STR);
+    $query->bindValue(':mdp', $mdp, PDO::PARAM_STR);
+    $query->execute();
+    $result = $query->fetch();
+    if (!empty($result)) {
+        $_SESSION['connected'] = true;
+        $_SESSION['id'] = $result['num_etudiant'];
+        $_SESSION['role'] = 'etudiant';
+        header('Location: index.php');
+        return true;
+    } else {
+        header('Location: index.php');
+        return false;
+    }
+}
+
+function connexionProfesseur($db){
+    $login = strip_tags($_POST['login']);
+    $mdp = strip_tags($_POST['mdp']);
+    $sql = 'SELECT * FROM `professeur` where login = :login and mdp = :mdp';
+    $query = $db->prepare($sql);
+    $query->bindValue(':login', $login, PDO::PARAM_STR);
+    $query->bindValue(':mdp', $mdp, PDO::PARAM_STR);
+    $query->execute();
+    $result = $query->fetch();
+    if (!empty($result)) {
+        $_SESSION['connected'] = true;
+        $_SESSION['id'] = $result['num_prof'];
+        $_SESSION['role'] = 'professeur';
+        header('Location: index.php');
+        return true;
+    } else {
+        header('Location: index.php');
+        return false;
+    }
+}
