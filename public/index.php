@@ -72,6 +72,11 @@ if (returnTrue()) {
         } else {
             echo $twig->render('view/ajout_ent.twig');
         }
+    } else if (isset($_GET['name']) && $_GET['name'] == 'deleteetu') {
+        if (isset($_GET['id']) && !empty($_GET['id'])) {
+            delete_etudiant($db);
+        }
+        echo $twig->render('view/stagiaire.twig');
     } else {
         echo $twig->render('view/accueil.twig');
     }

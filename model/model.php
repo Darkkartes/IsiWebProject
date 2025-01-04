@@ -37,22 +37,18 @@ function get_specialites_par_entreprise($db)
 {
     $id = strip_tags($_GET['id']);
     $sql = 'SELECT 
-    entreprise.num_entreprise,
-    entreprise.raison_sociale,
-    entreprise.rue_entreprise,
-    entreprise.site_entreprise,
-    entreprise.nom_resp,
-    GROUP_CONCAT(specialite.libelle SEPARATOR \',\') AS specialites
-    FROM 
-    spec_entreprise
-    JOIN 
-    entreprise USING (num_entreprise)
-    JOIN 
-    specialite USING (num_spec)
-    WHERE entreprise.num_entreprise = :id
-    GROUP BY 
-    entreprise.num_entreprise, entreprise.raison_sociale
-    ORDER BY entreprise.raison_sociale;';
+                    entreprise.num_entreprise,
+                    entreprise.raison_sociale,
+                    entreprise.rue_entreprise,
+                    entreprise.site_entreprise,
+                    entreprise.nom_resp,
+                    GROUP_CONCAT(specialite.libelle SEPARATOR \',\') AS specialites
+                FROM spec_entreprise
+                JOIN entreprise USING (num_entreprise)
+                JOIN specialite USING (num_spec)
+                WHERE entreprise.num_entreprise = :id
+                GROUP BY entreprise.num_entreprise, entreprise.raison_sociale
+                ORDER BY entreprise.raison_sociale;';
     $query = $db->prepare($sql);
     $query->bindValue(':id', $id, PDO::PARAM_STR);
     $query->execute();
@@ -82,16 +78,13 @@ function get_etudiant_par_id($db)
     return $result;
 }
 
-
-
 function get_etudiants($db)
 {
     $sql = 'SELECT DISTINCT
                 nom_etudiant, 
                 prenom_etudiant, 
-                raison_sociale, 
-                nom_prof, 
-                prenom_prof, 
+                GROUP_CONCAT(entreprise.raison_sociale SEPARATOR \', \') AS raison_sociale,
+                GROUP_CONCAT(CONCAT (professeur.nom_prof, \' \', professeur.prenom_prof)) AS nom_prof,
                 num_etudiant
             FROM 
                 etudiant 
@@ -102,25 +95,24 @@ function get_etudiants($db)
             LEFT JOIN 
                 entreprise USING (num_entreprise)
             GROUP BY 
-                num_etudiant, nom_etudiant, prenom_etudiant, raison_sociale, nom_prof, prenom_prof;';
+                num_etudiant, nom_etudiant, prenom_etudiant, raison_sociale, nom_prof, prenom_prof
+            ORDER BY 
+                nom_etudiant;';
     $query = $db->prepare($sql);
     $query->execute();
     $result = $query->fetchAll(PDO::FETCH_ASSOC);
     return $result;
 }
 
-
-function get_stagiaires($db)
+function delete_etudiant($db)
 {
-    $sql = 'SELECT nom_etudiant, prenom_etudiant, raison_sociale, nom_prof, prenom_prof, num_etudiant
-            FROM `stage` 
-            join `etudiant` using (num_etudiant) 
-            join `professeur` using (num_prof) 
-            join `entreprise` using (num_entreprise);';
+    $id = strip_tags($_GET['id']);
+    $sql = 'DELETE FROM `etudiant` where num_etudiant = :id';
     $query = $db->prepare($sql);
+    $query->bindValue(':id', $id, PDO::PARAM_STR);
     $query->execute();
-    $result = $query->fetchAll(PDO::FETCH_ASSOC);
-    return $result;
+    $_SESSION['message'] = 'Etudiant supprimé';
+    header('Location: index.php?name=stagiaire');
 }
 
 function get_stages($db)
@@ -227,7 +219,7 @@ function addEtudiant($db)
 
     $query->execute();
     $_SESSION['message'] = 'Etudiant ajouté';
-    header('Location: index.php');
+    header('Location: index.php?name=stagiaire');
 }
 
 function addEntreprise($db)
@@ -350,5 +342,5 @@ function addEntreprise($db)
     }
 
     $_SESSION['message'] = 'Entreprise ajoutée';
-    header('Location: index.php');
+    header('Location: index.php?name=entreprise');
 }
