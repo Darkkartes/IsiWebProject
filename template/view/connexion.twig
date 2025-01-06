@@ -10,7 +10,7 @@
 	<br>
 
 	<div class="message">
-		<form method="post">
+		<form method="post" action="index.php">
 			<div class="form-group">
 				Login :
 				<input type="text" class="form-control" id="login" name="login" required>
@@ -22,14 +22,14 @@
 			<div class="form-group form-check">
 				Vous êtes :
 				<div class="center">
-					<label for="etudiant">Etudiant<input type="radio" id="etudiant" name="type" value="Etudiant" required></label>
+					<label for="etudiant">Etudiant<input type="radio" id="etudiant" name="role" value="etudiant" required></label>
 				</div>
 				<div class="center">
-					<label for="professeur">Professeur<input type="radio" id="professeur" name="type" value="Professeur" required></label>
+					<label for="professeur">Professeur<input type="radio" id="professeur" name="role" value="professeur" required></label>
 				</div>
 			</div>
 
 			<input type="submit" value="Connexion">
 		</form>
 	</div>
-</form>{% endblock %}
+{% endblock %}

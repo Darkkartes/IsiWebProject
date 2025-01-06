@@ -4,11 +4,10 @@ require_once('../model/model.php');
 require_once('../vendor/autoload.php');
 $loader = new Twig\Loader\FilesystemLoader('../template');
 $twig = new Twig\Environment($loader);
-$_SESSION = array();
-$_SESSION['connected'] = false;
+session_start();
 $twig->addGlobal('session', $_SESSION);
 
-if (returnTrue()) {
+if (isset($_SESSION['connected']) && $_SESSION['connected']) {
     if (isset($_GET['name']) && $_GET['name'] == 'entreprise') {
         $entreprises = get_entreprises($db);
         echo $twig->render('view/entreprise.twig', ['entreprises' => $entreprises]);
@@ -16,7 +15,9 @@ if (returnTrue()) {
         $etudiants = get_etudiants($db);
         echo $twig->render('view/stagiaire.twig', ['etudiants' => $etudiants]);
     } else if (isset($_GET['name']) && $_GET['name'] == 'deconnexion') {
-        echo $twig->render('view/deconnexion.twig');
+        session_destroy();
+        header('Location: index.php');
+        exit();
     } else if (isset($_GET['name']) && $_GET['name'] == 'aide') {
         echo $twig->render('view/aide.twig');
     } else if (isset($_GET['name']) && $_GET['name'] == 'inscription') {
@@ -89,20 +90,26 @@ if (returnTrue()) {
         echo $twig->render('view/accueil.twig');
     }
 } else {
-    if (isset($_POST['utilisateur']) && !empty($_POST['utilisateur']) 
-    && isset($_POST['mdp']) && !empty($_POST['mdp'])) {
-        if ($_POST['role']=='etudiant'){
-            connexionEtudiant($db);
-        }
-        else if ($_POST['role']=='professeur'){
-            connexionProfesseur($db);
-        }
-        if ($_SESSION['connected']) {
-            echo $twig->render('view/accueil.twig');
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if (
+            isset($_POST['login']) && !empty($_POST['login'])
+            && isset($_POST['mdp']) && !empty($_POST['mdp'])
+        ) {
+            if ($_POST['role'] == 'etudiant') {
+                connexionEtudiant($db);
+            } else if ($_POST['role'] == 'professeur') {
+                connexionProfesseur($db);
+            }
+            if ($_SESSION['connected']) {
+                echo $twig->render('view/accueil.twig');
+            } else {
+                echo $twig->render('view/connexion.twig');
+            }
         } else {
             echo $twig->render('view/connexion.twig');
         }
+    } else {
+        echo $twig->render('view/connexion.twig');
     }
-    echo $twig->render('view/connexion.twig');
 }
 require_once('../model/close.php');

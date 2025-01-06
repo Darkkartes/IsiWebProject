@@ -115,7 +115,8 @@ function delete_etudiant($db)
     header('Location: index.php?name=stagiaire');
 }
 
-function delete_entreprise($db){
+function delete_entreprise($db)
+{
     $id = strip_tags($_GET['id']);
     $sql = 'DELETE FROM `spec_entreprise` where num_entreprise = :id';
     $query = $db->prepare($sql);
@@ -359,7 +360,8 @@ function addEntreprise($db)
     header('Location: index.php?name=entreprise');
 }
 
-function connexionEtudiant($db){
+function connexionEtudiant($db)
+{
     $login = strip_tags($_POST['login']);
     $mdp = strip_tags($_POST['mdp']);
     $sql = 'SELECT * FROM `etudiant` where login = :login and mdp = :mdp';
@@ -380,7 +382,8 @@ function connexionEtudiant($db){
     }
 }
 
-function connexionProfesseur($db){
+function connexionProfesseur($db)
+{
     $login = strip_tags($_POST['login']);
     $mdp = strip_tags($_POST['mdp']);
     $sql = 'SELECT * FROM `professeur` where login = :login and mdp = :mdp';
