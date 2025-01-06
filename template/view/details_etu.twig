@@ -1,41 +1,41 @@
 {% extends "base.twig" %}
-{% block stagiaire_active %}actif
-{% endblock %}
-{% block cacher %}display: none;
+{% block stagiaire_active %}bg-blue-600
 {% endblock %}
 {% block content %}
 	<article>
-		<h1>Stagiaire</h1>
+		<h1 class="text-2xl font-bold mb-4">Stagiaire</h1>
 
-		<table class="list">
+		<table class="min-w-full bg-white border border-gray-300">
 			<thead>
-				<th colspan="6">Informations sur le stagiaire
-					{{ stagiaire.num_etudiant }}</th>
+				<tr>
+					<th colspan="2" class="bg-blue-600 text-white px-4 py-2">Informations sur le stagiaire
+						{{ stagiaire.num_etudiant }}</th>
+				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>Nom</td>
-					<td>{{ stagiaire.nom_etudiant }}</td>
+				<tr class="bg-gray-100 border-b border-gray-300">
+					<td class="px-4 py-2 border border-gray-500">Nom</td>
+					<td class="px-4 py-2 border border-gray-500">{{ stagiaire.nom_etudiant }}</td>
 				</tr>
-				<tr>
-					<td>Prénom</td>
-					<td>{{ stagiaire.prenom_etudiant }}</td>
+				<tr class="bg-gray-100 border-b border-gray-300">
+					<td class="px-4 py-2 border border-gray-500">Prénom</td>
+					<td class="px-4 py-2 border border-gray-500">{{ stagiaire.prenom_etudiant }}</td>
 				</tr>
-				<tr>
-					<td>Nom d'utilisateur (8 caractères)</td>
-					<td>{{ stagiaire.login }}</td>
+				<tr class="bg-gray-100 border-b border-gray-300">
+					<td class="px-4 py-2 border border-gray-500">Nom d'utilisateur (8 caractères)</td>
+					<td class="px-4 py-2 border border-gray-500">{{ stagiaire.login }}</td>
 				</tr>
-				<tr>
-					<td>Mot de passe (entre 8 et 30 caractères)</td>
-					<td>{{ stagiaire.mdp }}</td>
+				<tr class="bg-gray-100 border-b border-gray-300">
+					<td class="px-4 py-2 border border-gray-500">Mot de passe (entre 8 et 30 caractères)</td>
+					<td class="px-4 py-2 border border-gray-500">{{ stagiaire.mdp }}</td>
 				</tr>
-				<tr>
-					<td>Date d'obtention du diplôme</td>
-					<td>{{ stagiaire.annee_obtention }}</td>
+				<tr class="bg-gray-100 border-b border-gray-300">
+					<td class="px-4 py-2 border border-gray-500">Date d'obtention du diplôme</td>
+					<td class="px-4 py-2 border border-gray-500">{{ stagiaire.annee_obtention }}</td>
 				</tr>
-				<tr>
-					<td>Classe</td>
-					<td>{{ stagiaire.num_classe }}</td>
+				<tr class="bg-gray-100 border-b border-gray-300">
+					<td class="px-4 py-2 border border-gray-500">Classe</td>
+					<td class="px-4 py-2 border border-gray-500">{{ stagiaire.num_classe }}</td>
 				</tr>
 			</tbody>
 		</table>

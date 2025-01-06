@@ -1,56 +1,47 @@
 {% extends "base.twig" %}
-{% block entreprise_active %}actif
-{% endblock %}
-{% block cacher %}display: none;
+{% block entreprise_active %}bg-blue-600
 {% endblock %}
 {% block content %}
 	<article>
-		<h1>Entreprise
+		<h1 class="text-2xl font-bold mb-4">Entreprise
 			{{ entreprise.num_entreprise }}</h1>
 
-		<p>
-			Nom de l'entreprise :
-			{{ entreprise.raison_sociale }}
-			<br>
-			Nom du responsable :
-			{{ entreprise.nom_resp }}
-			<br>
-			Nom du contact :
-			{{ entreprise.nom_contact}}
-		</p>
+		<div class="mb-6">
+			<h2 class="text-xl font-semibold mb-2">Informations sur l'entreprise</h2>
+			<p class="bg-gray-100 p-4 rounded border border-gray-300">
+				<strong>Nom de l'entreprise :</strong>
+				{{ entreprise.raison_sociale }}<br>
+				<strong>Nom du responsable :</strong>
+				{{ entreprise.nom_resp }}<br>
+				<strong>Nom du contact :</strong>
+				{{ entreprise.nom_contact }}
+			</p>
+		</div>
 
-		<h2>Contact</h2>
-		<p>
-			Adresse :
-			{{ entreprise.rue_entreprise }}
-			{{ entreprise.cp_entreprise }}
-			{{ entreprise.ville_entreprise }}
-			<br>
-			Téléphone :
-			{{ entreprise.tel_entreprise }}
-			<br>
-			Fixe :
-			{{ entreprise.fixe_entreprise }}
-			<br>
-			Mail :
-			{{ entreprise.email }}
-		</p>
+		<div class="mb-6">
+			<h2 class="text-xl font-semibold mb-2">Contact</h2>
+			<p class="bg-gray-100 p-4 rounded border border-gray-300">
+				<strong>Adresse :</strong>
+				{{ entreprise.rue_entreprise }}
+				{{ entreprise.cp_entreprise }}
+				{{ entreprise.ville_entreprise }}<br>
+				<strong>Téléphone :</strong>
+				{{ entreprise.tel_entreprise }}<br>
+				<strong>Fixe :</strong>
+				{{ entreprise.fixe_entreprise }}<br>
+				<strong>Mail :</strong>
+				{{ entreprise.email }}
+			</p>
+		</div>
 
-		<h2>Divers</h2>
-		<p>
-			Observation :
-			{{ entreprise.observation }}
-			<br>
-			Site :
-			<a href="{{ entreprise.site_entreprise }}">
-				{{ entreprise.site_entreprise }}
-			</a>
-			<br>
-			Niveau :
-			{{ entreprise.niveau }}
-			<br>
-			Spécialité :
-			{{ specialites.specialites }}
-		</p>
+		<div class="mb-6">
+			<h2 class="text-xl font-semibold mb-2">Divers</h2>
+			<p class="bg-gray-100 p-4 rounded border border-gray-300">
+				<strong>Observation :</strong>
+				{{ entreprise.observation }}<br>
+				<strong>Site :</strong>
+				<a href="{{ entreprise.site_entreprise }}" class="text-blue-600 hover:underline">{{ entreprise.site_entreprise }}</a>
+			</p>
+		</div>
 	</article>
 {% endblock %}

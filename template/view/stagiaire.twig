@@ -1,56 +1,55 @@
 {% extends "base.twig" %}
-{% block stagiaire_active %}actif
-{% endblock %}
-{% block cacher %}display: none;
+{% block stagiaire_active %}bg-blue-600
 {% endblock %}
 {% block content %}
-
 	<article>
-		<h1>Stagiaire</h1>
+		<h1 class="text-2xl font-bold mb-4">Stagiaire</h1>
 
-		<div>
-			<a href="index.php?name=rechercheetu">
-				<button id="recherche_stagiaire">Rechercher un stagiaire</button>
+		<div class="mb-4">
+			<a href="index.php?name=rechercheetu" class="inline-block">
+				<button class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">Rechercher un stagiaire</button>
 			</a>
 
-			<a href="index.php?name=ajoutetu">
-				<button>Ajouter un stagiaire</button>
+			<a href="index.php?name=ajoutetu" class="inline-block">
+				<button class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">Ajouter un stagiaire</button>
 			</a>
 		</div>
 
-		<table class="list">
-			<tr>
-				<th>Détails</th>
-				<th>Opération</th>
-				<th>Etudiant</th>
-				<th>Entreprise</th>
-				<th>Professeur</th>
-			</tr>
-			{% for etu in etudiants %}
+		<table class="min-w-full bg-white border border-gray-300">
+			<thead>
 				<tr>
-					<td>
-						<a href="index.php?id={{ etu.num_etudiant }}&name=detailsetu" class="center">
-							<img src="../icons/voir.png" alt="details" width="20%"></a>
-					</td>
-					<td>
-						<div class="center">
-							<a href="index.php?id={{ etu.num_etudiant }}&name=modifetu"><img src="../icons/modifier.png" alt="modifier" width="10%"></a>
-							<a href="index.php?id={{ etu.num_etudiant }}&name=deleteetu"><img src="../icons/supprimer.png" alt="supprimer" width="10%"></a>
-						</div>
-					</td>
-					<td>
-						{{ etu.nom_etudiant }}
-						{{ etu.prenom_etudiant }}
-					</td>
-					<td>
-						{{ etu.raison_sociale }}
-					</td>
-					<td>
-						{{ etu.nom_prof }}
-						{{ etu.prenom_prof }}
-					</td>
+					<th class="bg-blue-600 text-white px-4 py-2">Détails</th>
+					<th class="bg-blue-600 text-white px-4 py-2">Opération</th>
+					<th class="bg-blue-600 text-white px-4 py-2">Etudiant</th>
+					<th class="bg-blue-600 text-white px-4 py-2">Entreprise</th>
+					<th class="bg-blue-600 text-white px-4 py-2">Professeur</th>
 				</tr>
-			{% endfor %}
+			</thead>
+			<tbody>
+				{% for etu in etudiants %}
+					<tr class="bg-gray-300 border-b border-gray-500">
+						<td class="px-4 py-2 text-center border border-gray-500">
+							<a href="index.php?id={{ etu.num_etudiant }}&name=detailsetu" class="flex justify-center">
+								<img src="../icons/voir.png" alt="details" class="w-6 h-6">
+							</a>
+						</td>
+						<td class="px-4 py-2 text-center border border-gray-500">
+							<div class="flex justify-center space-x-2">
+								<a href="index.php?id={{ etu.num_etudiant }}&name=modifetu">
+									<img src="../icons/modifier.png" alt="modifier" class="w-6 h-6">
+								</a>
+								<a href="index.php?id={{ etu.num_etudiant }}&name=deleteetu">
+									<img src="../icons/supprimer.png" alt="supprimer" class="w-6 h-6">
+								</a>
+							</div>
+						</td>
+						<td class="px-4 py-2 border border-gray-500">{{ etu.nom_etudiant }}
+							{{ etu.prenom_etudiant }}</td>
+						<td class="px-4 py-2 border border-gray-500">{{ etu.raison_sociale }}</td>
+						<td class="px-4 py-2 border border-gray-500">{{ etu.nom_prof }}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
 		</table>
 	</article>
 {% endblock %}

@@ -1,54 +1,54 @@
 {% extends "base.twig" %}
-{% block entreprise_active %}actif
-{% endblock %}
-{% block cacher %}display: none;
+{% block entreprise_active %}bg-blue-600
 {% endblock %}
 {% block content %}
+	<h1 class="text-2xl font-bold mb-4">Entreprise</h1>
 
-	<h1>Entreprise</h1>
-
-	<a href="index.php?name=ajoutent">
-		<button>Ajouter une entreprise</button>
+	<a href="index.php?name=ajoutent" class="inline-block mb-4">
+		<button class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">Ajouter une entreprise</button>
 	</a>
-	<!-- Version étudiant -->
-	<table class="list">
+	<table class="min-w-full bg-white border border-gray-300">
 		<thead>
-			<th>Opération</th>
-			<th>Entreprise</th>
-			<th>Responsable</th>
-			<th>Adresse</th>
-			<th>Site</th>
-			<th>Spécialité</th>
+			<tr>
+				<th class="bg-blue-600 text-white px-4 py-2">Opération</th>
+				<th class="bg-blue-600 text-white px-4 py-2">Entreprise</th>
+				<th class="bg-blue-600 text-white px-4 py-2">Responsable</th>
+				<th class="bg-blue-600 text-white px-4 py-2">Adresse</th>
+				<th class="bg-blue-600 text-white px-4 py-2">Site</th>
+				<th class="bg-blue-600 text-white px-4 py-2">Spécialité</th>
+			</tr>
 		</thead>
 		<tbody>
 			{% for entreprise in entreprises %}
-				<tr>
-					<td>
-						<div class="center">
+				<tr class="bg-gray-300 border-b border-gray-500">
+					<td class="px-4 py-2 text-center border border-gray-500">
+						<div class="flex justify-center space-x-2">
 							<a href="index.php?id={{ entreprise.num_entreprise }}&name=detailsent">
-								<img src="../icons/voir.png" alt="details" width="15%"></a>
+								<img src="../icons/voir.png" alt="details" class="w-6 h-6">
+							</a>
 							<a href="index.php?id={{ entreprise.num_entreprise }}&name=inscription">
-								<img src="../icons/inscrire.png" alt="inscription" width="15%"></a>
+								<img src="../icons/inscrire.png" alt="inscription" class="w-6 h-6">
+							</a>
 							<a href="index.php?id={{ entreprise.num_entreprise }}&name=deleteent">
-								<img src="../icons/supprimer.png" alt="supprimer" width="15%"></a>
+								<img src="../icons/supprimer.png" alt="supprimer" class="w-6 h-6">
+							</a>
 						</div>
 					</td>
-					<td>{{ entreprise.raison_sociale }}</td>
-					<td>{{ entreprise.nom_resp }}</td>
-					<td>{{ entreprise.rue_entreprise }}
+					<td class="px-4 py-2 border border-gray-500">{{ entreprise.raison_sociale }}</td>
+					<td class="px-4 py-2 border border-gray-500">{{ entreprise.nom_resp }}</td>
+					<td class="px-4 py-2 border border-gray-500">{{ entreprise.rue_entreprise }}
 						{{ entreprise.cp_entreprise }}
 						{{ entreprise.ville_entreprise }}</td>
-					<td>
+					<td class="px-4 py-2 border border-gray-500">
 						{% if entreprise.site_entreprise %}
-							<a href="{{ entreprise.site_entreprise }}" class="center"><img src="../icons/lien.png" alt="details" width="25%"></a>
+							<a href="{{ entreprise.site_entreprise }}" class="flex justify-center">
+								<img src="../icons/lien.png" alt="details" class="w-6 h-6">
+							</a>
 						{% endif %}
 					</td>
-					<td>
-						{{ entreprise.specialites }}
-					</td>
+					<td class="px-4 py-2 border border-gray-500">{{ entreprise.specialites }}</td>
 				</tr>
 			{% endfor %}
 		</tbody>
 	</table>
-
 {% endblock %}

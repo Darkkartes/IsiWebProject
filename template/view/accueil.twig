@@ -1,11 +1,12 @@
 {% extends "base.twig" %}
-{% block accueil_active %}actif
-{% endblock %}
-{% block cacher %}display: none;
+{% block accueil_active %}bg-blue-600
 {% endblock %}
 {% block content %}
-	<h1>Accueil</h1>
+	<h1 class="text-2xl font-bold mb-4">Accueil</h1>
 
-	<p>Bienvenue {{ session.prenom }} {{ session.nom }}.</p>
-	<p>Vous êtes connecté en tant que {{ session.role }}.</p>
+	<p class="p-4 mb-4">Bienvenue
+		{{ session.prenom }}
+		{{ session.nom }}.</p>
+	<p class="p-4">Vous êtes connecté en tant que
+		{{ session.role }}.</p>
 {% endblock %}

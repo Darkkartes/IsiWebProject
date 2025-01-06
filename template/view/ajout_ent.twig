@@ -1,121 +1,66 @@
 {% extends "base.twig" %}
-{% block entreprise_active %}actif
-{% endblock %}
-{% block cacher %}display: none;
+{% block entreprise_active %}bg-blue-600
 {% endblock %}
 {% block content %}
-
-	<h1>Ajouter une entreprise</h1>
+	<h1 class="text-2xl font-bold mb-4">Ajouter une entreprise</h1>
 	<form method="post">
-		<table class="list">
-			<th colspan="2">
-				Information
-			</th>
-			<tr>
-				<td>
-					Nom de l'entreprise<span class="important">*</span>
-				</td>
-				<td>
-					<textarea name="entreprise" id="entreprise" required></textarea>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					Nom du contact
-				</td>
-				<td>
-					<textarea name="nom_contact" id="nom_contact"></textarea>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					Nom du responsable
-				</td>
-				<td>
-					<textarea name="nom_responsable" id="nom_responsable"></textarea>
-				</td>
-			</tr>
-		</table>
+		<div class="mb-6">
+			<h2 class="text-xl font-semibold mb-2">Information</h2>
+			<div class="mb-4">
+				<label for="entreprise" class="block text-gray-700 font-bold mb-2">Nom de l'entreprise<span class="text-red-500">*</span>
+				</label>
+				<textarea name="entreprise" id="entreprise" required class="w-full p-2 border border-gray-300 rounded"></textarea>
+			</div>
+			<div class="mb-4">
+				<label for="nom_contact" class="block text-gray-700 font-bold mb-2">Nom du contact</label>
+				<textarea name="nom_contact" id="nom_contact" class="w-full p-2 border border-gray-300 rounded"></textarea>
+			</div>
+			<div class="mb-4">
+				<label for="nom_responsable" class="block text-gray-700 font-bold mb-2">Nom du responsable</label>
+				<textarea name="nom_responsable" id="nom_responsable" class="w-full p-2 border border-gray-300 rounded"></textarea>
+			</div>
+		</div>
 
-		<table class="list">
-			<th colspan="2">
-				Contact
-			</th>
-			<tr>
-				<td>Rue<span class="important">*</span>:</td>
-				<td>
-					<textarea name="rue" id="rue" required></textarea>
-				</td>
-			</tr>
-			<tr>
-				<td>Code postal<span class="important">*</span>:</td>
-				<td>
-					<textarea name="code_postal" id="code_postal" required></textarea>
-				</td>
-			</tr>
-			<tr>
-				<td>Ville<span class="important">*</span>:</td>
-				<td>
-					<textarea name="ville" id="ville" required></textarea>
-				</td>
-			</tr>
-			<tr>
-				<td>Téléphone<span class="important">*</span>:</td>
-				<td>
-					<textarea name="telephone" id="telephone" required></textarea>
-				</td>
-			</tr>
-			<tr>
-				<td>Fixe:</td>
-				<td>
-					<textarea name="fixe" id="fixe"></textarea>
-				</td>
-			</tr>
-			<tr>
-				<td>Mail<span class="important">*</span>:</td>
-				<td>
-					<textarea name="mail" id="mail" required></textarea>
-				</td>
-			</tr>
-		</table>
+		<div class="mb-6">
+			<h2 class="text-xl font-semibold mb-2">Contact</h2>
+			<div class="mb-4">
+				<label for="rue" class="block text-gray-700 font-bold mb-2">Rue<span class="text-red-500">*</span>
+				</label>
+				<textarea name="rue" id="rue" required class="w-full p-2 border border-gray-300 rounded"></textarea>
+			</div>
+			<div class="mb-4">
+				<label for="ville" class="block text-gray-700 font-bold mb-2">Ville<span class="text-red-500">*</span>
+				</label>
+				<textarea name="ville" id="ville" required class="w-full p-2 border border-gray-300 rounded"></textarea>
+			</div>
+			<div class="mb-4">
+				<label for="code_postal" class="block text-gray-700 font-bold mb-2">Code postal<span class="text-red-500">*</span>
+				</label>
+				<textarea name="code_postal" id="code_postal" required class="w-full p-2 border border-gray-300 rounded"></textarea>
+			</div>
+			<div class="mb-4">
+				<label for="telephone" class="block text-gray-700 font-bold mb-2">Téléphone<span class="text-red-500">*</span>
+				</label>
+				<textarea name="telephone" id="telephone" required class="w-full p-2 border border-gray-300 rounded"></textarea>
+			</div>
+			<div class="mb-4">
+				<label for="mail" class="block text-gray-700 font-bold mb-2">Email<span class="text-red-500">*</span>
+				</label>
+				<textarea name="mail" id="mail" required class="w-full p-2 border border-gray-300 rounded"></textarea>
+			</div>
+		</div>
 
-		<table class="list">
-			<th colspan="2">
-				Divers
-			</th>
-			<tr>
-				<td>Observation:</td>
-				<td>
-					<textarea name="observation" id="observation"></textarea>
-				</td>
-			</tr>
-			<tr>
-				<td>Site:</td>
-				<td>
-					<textarea name="site" id="site"></textarea>
-				</td>
-			</tr>
-			<tr>
-				<td>Niveau<span class="important">*</span>:</td>
-				<td>
-					<textarea name="niveau" id="niveau" required></textarea>
-				</td>
-			</tr>
-			<tr>
-				<td>Spécialité:</td>
-				<td>
-					<textarea name="specialite" id="specialite"></textarea>
-				</td>
-			</tr>
-		</table>
+		<div class="mb-6">
+			<h2 class="text-xl font-semibold mb-2">Spécialité</h2>
+			<div class="mb-4">
+				<label for="specialite" class="block text-gray-700 font-bold mb-2">Spécialité<span class="text-red-500">*</span>
+				</label>
+				<textarea name="specialite" id="specialite" required class="w-full p-2 border border-gray-300 rounded"></textarea>
+			</div>
+		</div>
 
-
-		<p class="message">
-			Les champs comportant le symbole
-			<span class="important">*</span>
-			sont obligatoires
-		</p>
-		<input type="submit" value="S'inscrire">
+		<div class="text-center">
+			<input type="submit" value="Ajouter" class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">
+		</div>
 	</form>
-
 {% endblock %}
