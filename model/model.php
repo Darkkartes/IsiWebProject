@@ -5,6 +5,8 @@ function get_entreprises($db)
     entreprise.num_entreprise,
     entreprise.raison_sociale,
     entreprise.rue_entreprise,
+    entreprise.ville_entreprise,
+    entreprise.cp_entreprise,
     entreprise.site_entreprise,
     entreprise.nom_resp,
     GROUP_CONCAT(specialite.libelle SEPARATOR \',\') AS specialites
@@ -102,7 +104,7 @@ function delete_etudiant($db)
     $query = $db->prepare($sql);
     $query->bindValue(':id', $id, PDO::PARAM_STR);
     $query->execute();
-    
+
     $sql = 'DELETE FROM `etudiant` where num_etudiant = :id';
     $query = $db->prepare($sql);
     $query->bindValue(':id', $id, PDO::PARAM_STR);
@@ -114,10 +116,17 @@ function delete_etudiant($db)
 function delete_entreprise($db)
 {
     $id = strip_tags($_GET['id']);
+
     $sql = 'DELETE FROM `spec_entreprise` where num_entreprise = :id';
     $query = $db->prepare($sql);
     $query->bindValue(':id', $id, PDO::PARAM_STR);
     $query->execute();
+
+    $sql = 'DELETE FROM `stage` where num_entreprise = :id';
+    $query = $db->prepare($sql);
+    $query->bindValue(':id', $id, PDO::PARAM_STR);
+    $query->execute();
+
     $sql = 'DELETE FROM `entreprise` where num_entreprise = :id';
     $query = $db->prepare($sql);
     $query->bindValue(':id', $id, PDO::PARAM_STR);
