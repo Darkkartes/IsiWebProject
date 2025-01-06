@@ -97,6 +97,12 @@ function get_etudiants($db)
 function delete_etudiant($db)
 {
     $id = strip_tags($_GET['id']);
+
+    $sql = 'DELETE FROM `stage` where num_etudiant = :id';
+    $query = $db->prepare($sql);
+    $query->bindValue(':id', $id, PDO::PARAM_STR);
+    $query->execute();
+    
     $sql = 'DELETE FROM `etudiant` where num_etudiant = :id';
     $query = $db->prepare($sql);
     $query->bindValue(':id', $id, PDO::PARAM_STR);
