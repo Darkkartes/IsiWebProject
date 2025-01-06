@@ -408,6 +408,8 @@ function connexionEtudiant($db)
     if (!empty($result)) {
         $_SESSION['connected'] = true;
         $_SESSION['id'] = $result['num_etudiant'];
+        $_SESSION['nom'] = $result['nom_etudiant'];
+        $_SESSION['prenom'] = $result['prenom_etudiant'];
         $_SESSION['role'] = 'etudiant';
         header('Location: index.php');
         return true;
@@ -430,6 +432,8 @@ function connexionProfesseur($db)
     if (!empty($result)) {
         $_SESSION['connected'] = true;
         $_SESSION['id'] = $result['num_prof'];
+        $_SESSION['nom'] = $result['nom_prof'];
+        $_SESSION['prenom'] = $result['prenom_prof'];
         $_SESSION['role'] = 'professeur';
         header('Location: index.php');
         return true;
