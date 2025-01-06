@@ -1,6 +1,8 @@
 {% extends "base.twig" %}
 {% block entreprise_active %}actif
 {% endblock %}
+{% block cacher %}display: none;
+{% endblock %}
 {% block content %}
 
 	<h1>Ajouter une entreprise</h1>
@@ -30,7 +32,7 @@
 					Nom du responsable
 				</td>
 				<td>
-					<textarea name="nom_responsable" id ="nom_responsable"></textarea>
+					<textarea name="nom_responsable" id="nom_responsable"></textarea>
 				</td>
 			</tr>
 		</table>

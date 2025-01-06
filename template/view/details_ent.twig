@@ -1,6 +1,8 @@
 {% extends "base.twig" %}
 {% block entreprise_active %}actif
 {% endblock %}
+{% block cacher %}display: none;
+{% endblock %}
 {% block content %}
 	<article>
 		<h1>Entreprise
@@ -40,7 +42,9 @@
 			{{ entreprise.observation }}
 			<br>
 			Site :
-			<a href="{{ entreprise.site_entreprise }}"> {{ entreprise.site_entreprise }} </a>
+			<a href="{{ entreprise.site_entreprise }}">
+				{{ entreprise.site_entreprise }}
+			</a>
 			<br>
 			Niveau :
 			{{ entreprise.niveau }}
