@@ -1,14 +1,4 @@
 <?php
-function returnTrue()
-{
-    return true;
-}
-
-function returnFalse()
-{
-    return false;
-}
-
 function get_entreprises($db)
 {
     $sql = 'SELECT 
@@ -402,4 +392,43 @@ function connexionProfesseur($db)
         header('Location: index.php');
         return false;
     }
+}
+
+function get_etudiants_recherche($db)
+{
+    $nom = strip_tags($_POST['nom']);
+    $prenom = strip_tags($_POST['prenom']);
+    $entreprise = strip_tags($_POST['entreprise']);
+    $professeur = strip_tags($_POST['professeur']);
+    $sql = 'SELECT DISTINCT
+                etudiant.nom_etudiant, 
+                etudiant.prenom_etudiant, 
+                GROUP_CONCAT(DISTINCT entreprise.raison_sociale SEPARATOR \', \') AS raison_sociale,
+                GROUP_CONCAT(DISTINCT CONCAT(professeur.nom_prof, \' \', professeur.prenom_prof) SEPARATOR \', \') AS nom_prof,
+                etudiant.num_etudiant
+            FROM 
+                etudiant 
+            LEFT JOIN 
+                stage ON etudiant.num_etudiant = stage.num_etudiant
+            LEFT JOIN 
+                professeur ON stage.num_prof = professeur.num_prof
+            LEFT JOIN 
+                entreprise ON stage.num_entreprise = entreprise.num_entreprise
+            WHERE 
+                etudiant.nom_etudiant LIKE :nom
+                AND etudiant.prenom_etudiant LIKE :prenom
+                AND (entreprise.raison_sociale LIKE :entreprise OR entreprise.raison_sociale IS NULL)
+                AND (professeur.nom_prof LIKE :professeur OR professeur.nom_prof IS NULL)
+            GROUP BY 
+                etudiant.num_etudiant, etudiant.nom_etudiant, etudiant.prenom_etudiant
+            ORDER BY 
+                etudiant.nom_etudiant;';
+    $query = $db->prepare($sql);
+    $query->bindValue(':nom', '%' . $nom . '%', PDO::PARAM_STR);
+    $query->bindValue(':prenom', '%' . $prenom . '%', PDO::PARAM_STR);
+    $query->bindValue(':entreprise', '%' . $entreprise . '%', PDO::PARAM_STR);
+    $query->bindValue(':professeur', '%' . $professeur . '%', PDO::PARAM_STR);
+    $query->execute();
+    $result = $query->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
 }

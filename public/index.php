@@ -86,6 +86,18 @@ if (isset($_SESSION['connected']) && $_SESSION['connected']) {
             delete_entreprise($db);
         }
         echo $twig->render('view/entreprise.twig');
+    } else if (isset($_GET['name']) && $_GET['name'] == 'rechercheetu') {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $etudiants = get_etudiants_recherche($db);
+            echo $twig->render('view/stagiaire.twig', ['etudiants' => $etudiants]);
+        } else {
+            $professeurs = get_professeurs($db);
+            $entreprises = get_entreprises($db);
+            echo $twig->render('view/recherche_etu.twig', [
+                'professeurs' => $professeurs,
+                'entreprises' => $entreprises
+            ]);
+        }
     } else {
         echo $twig->render('view/accueil.twig');
     }
