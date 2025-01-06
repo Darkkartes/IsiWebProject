@@ -98,6 +98,23 @@ if (isset($_SESSION['connected']) && $_SESSION['connected']) {
                 'entreprises' => $entreprises
             ]);
         }
+    } else if (isset($_GET['name']) && $_GET['name'] == 'modifetu') {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (
+                isset($_POST['nom']) && !empty($_POST['nom'])
+                && isset($_POST['prenom']) && !empty($_POST['prenom'])
+                && isset($_POST['utilisateur']) && !empty($_POST['utilisateur'])
+                && isset($_POST['mdp']) && !empty($_POST['mdp'])
+                && isset($_POST['classe']) && !empty($_POST['classe'])
+            ) {
+                modifEtudiant($db);
+            }
+            $etudiant = get_etudiant_par_id($db);
+            echo $twig->render('view/modif_etu.twig', $etudiant);
+        } else {
+            $etudiant = get_etudiant_par_id($db);
+            echo $twig->render('view/modif_etu.twig', $etudiant);
+        }
     } else {
         echo $twig->render('view/accueil.twig');
     }

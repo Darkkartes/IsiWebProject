@@ -227,6 +227,36 @@ function addEtudiant($db)
     header('Location: index.php?name=stagiaire');
 }
 
+function modifEtudiant($db)
+{
+    $id = strip_tags($_GET['id']);
+    $nom = strip_tags($_POST['nom']);
+    $prenom = strip_tags($_POST['prenom']);
+    $nom_utilisateur = strip_tags($_POST['utilisateur']);
+    $mdp = strip_tags($_POST['mdp']);
+    $classe = strip_tags($_POST['classe']);
+
+    $sql = 'UPDATE `etudiant` 
+            SET nom_etudiant = :nom, 
+                prenom_etudiant = :prenom,
+                login = :login, 
+                mdp = :mdp, 
+                num_classe = :classe 
+            WHERE num_etudiant = :id';
+    $query = $db->prepare($sql);
+
+    $query->bindValue(':id', $id, PDO::PARAM_STR);
+    $query->bindValue(':nom', $nom, PDO::PARAM_STR);
+    $query->bindValue(':prenom', $prenom, PDO::PARAM_STR);
+    $query->bindValue(':login', $nom_utilisateur, PDO::PARAM_STR);
+    $query->bindValue(':mdp', $mdp, PDO::PARAM_STR);
+    $query->bindValue(':classe', $classe, PDO::PARAM_STR);
+
+    $query->execute();
+    $_SESSION['message'] = 'Etudiant modifié';
+    header('Location: index.php?name=stagiaire');
+}
+
 function addEntreprise($db)
 {
     $entreprise = strip_tags($_POST['entreprise']);
