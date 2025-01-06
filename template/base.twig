@@ -20,6 +20,11 @@
 					<a id="onglet_aide" href="index.php?name=aide" class="{% block aide_active %} {% endblock %}">Aide</a>
 					<a id="onglet_deconnexion" href="index.php?name=deconnexion" class="{% block deconnexion_active %} {% endblock %}">Déconnexion</a>
 					<a id="onglet_connexion" href="index.php?name=connexion" class="{% block connexion_active %} {% endblock %}" style="{% block cacher %} {% endblock %}">Connexion</a>
+					{% if connected %}
+						<a id="utilisateur">Bonjour
+							{{ connected.nom }}
+							{{ connected.prenom }}</a>
+					{% endif %}
 				</nav>
 			</div>
 		</div>

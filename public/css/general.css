@@ -41,6 +41,21 @@ nav a {
     height: 23px;
 }
 
+#utilisateur {
+    margin-left: -60px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
+#utilisateur:hover {
+    overflow: visible;
+    white-space: normal;
+    text-align: center;
+}
+
 nav a.actif {
     background-color: #3050F0;
 }
