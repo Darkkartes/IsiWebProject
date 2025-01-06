@@ -1,5 +1,1 @@
 - rôles
-- Bouton "postuler" pour les étudiants dans la page entreprise 
-    > jsp trop comment faire ça
-    > option 1 : faire le lien avec la page inscription ?
-    > option 2 : envoi d'un "mail automatique" avec les détails de l'élève à l'adresse mail de l'entreprise
