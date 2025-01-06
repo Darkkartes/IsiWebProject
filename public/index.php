@@ -48,8 +48,12 @@ if (isset($_SESSION['connected']) && $_SESSION['connected']) {
             echo "<script>alert('Sorry, you do not have permission to register a student.'); window.location.href='index.php';</script>";
         }
     } else if (isset($_GET['name']) && $_GET['name'] == 'detailsetu') {
-        $stagiaire = get_etudiant_par_id($db);
-        echo $twig->render('view/details_etu.twig', ['stagiaire' => $stagiaire, 'connected' => $connected]);
+        if ($_SESSION['role'] == 'professeur' || $_SESSION['id'] == $_GET['id']) {
+            $stagiaire = get_etudiant_par_id($db);
+            echo $twig->render('view/details_etu.twig', ['stagiaire' => $stagiaire, 'connected' => $connected]);
+        } else {
+            echo "<script>alert('Sorry, you do not have permission to view this student.'); window.location.href='index.php?name=stagiaire';</script>";
+        }
     } else if (isset($_GET['name']) && $_GET['name'] == 'detailsent') {
         $entreprise = get_entreprise_par_id($db);
         $specialites = get_specialites_par_entreprise($db);
