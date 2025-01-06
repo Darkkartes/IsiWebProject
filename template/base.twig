@@ -22,7 +22,7 @@
 						<img src="../icons/stage.png" alt="Stagiaire" class="w-6 h-6 mr-2">
 						<span>Stagiaire</span>
 					</a>
-					<a id="onglet_inscrire" href="index.php?name=inscription" class="{% block inscription_active %} {% endblock %} p-4 text-lg hover:bg-gray-700 flex items-center">
+					<a id="onglet_inscrire" href="index.php?name=inscription" class="{% block inscription_active %} {% endblock %} p-4 text-lg hover:bg-gray-700 flex items-center {% if connected.role == 'etudiant' %}hidden{% endif %}">
 						<img src="../icons/inscrire.png" alt="Inscription" class="w-6 h-6 mr-2">
 						<span>Inscription</span>
 					</a>
@@ -34,7 +34,7 @@
 						<img src="../icons/deconnexion.png" alt="Déconnexion" class="w-6 h-6 mr-2">
 						<span>Déconnexion</span>
 					</a>
-					<a id="onglet_connexion" href="index.php?name=connexion" class="{% block connexion_active %} {% endblock %} p-4 text-lg hover:bg-gray-700 flex items-center {% if connected %}hidden{% endif %}">
+					<a id="onglet_connexion" href="index.php?name=connexion" class="{% block connexion_active %} {% endblock %} p-4 text-lg hover:bg-gray-700 flex items-center {% if connected.connected %}hidden{% endif %}">
 						<img src="../icons/deconnexion.png" alt="Connexion" class="w-6 h-6 mr-2 transform scale-x-[-1]">
 						<span>Connexion</span>
 					</a>
