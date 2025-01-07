@@ -204,7 +204,7 @@ function get_stage_par_id($db)
 /**
  * Retrieves an array of the teachers of the database.
  * @param PDO $db The database connection object.
- * @return void An array of the teachers' information.
+ * @return array An array of the teachers' information.
  */
 function get_professeurs($db)
 {
