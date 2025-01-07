@@ -219,7 +219,7 @@ function addEtudiant($db)
     $prenom = strip_tags($_POST['prenom']);
     $nom_utilisateur = strip_tags($_POST['utilisateur']);
     $mdp = strip_tags($_POST['mdp']);
-    if (isset($_POST['date'])) {
+    if (isset($_POST['date']) && !empty($_POST['date'])) {
         $date_diplome = strip_tags($_POST['date']);
     } else {
         $date_diplome = null;
@@ -235,7 +235,7 @@ function addEtudiant($db)
     $query->bindValue(':login', $nom_utilisateur, PDO::PARAM_STR);
     $query->bindValue(':mdp', $mdp, PDO::PARAM_STR);
     $query->bindValue(':classe', $classe, PDO::PARAM_STR);
-    $query->bindValue(':diplome', $date_diplome, PDO::PARAM_STR);
+    $query->bindValue(':diplome', $date_diplome, $date_diplome === null ? PDO::PARAM_NULL : PDO::PARAM_STR);
 
     $query->execute();
     $_SESSION['message'] = 'Etudiant ajouté';
