@@ -1,4 +1,10 @@
 <?php
+/**
+ * Retrieves an array of entreprises from the database.
+ *
+ * @param PDO $db The database connection object.
+ * @return array An array of enterprises' information.
+ */
 function get_entreprises($db)
 {
     $sql = 'SELECT 
@@ -25,6 +31,11 @@ function get_entreprises($db)
     return $result;
 }
 
+/**
+ * Retrieves an array of the information and specialities of the entreprise whose id is stored in $_GET['id'].
+ * @param PDO $db The database connection object.
+ * @return array An array of the entreprise's information and its specialities.
+ */
 function get_specialites_par_entreprise($db)
 {
     $id = strip_tags($_GET['id']);
@@ -48,6 +59,11 @@ function get_specialites_par_entreprise($db)
     return $result;
 }
 
+/**
+ * Retrieves the information of the entreprise whose id is stored in $_GET['id'].
+ * @param PDO $db The database connection object.
+ * @return array An array of the entreprise's information.
+ */
 function get_entreprise_par_id($db)
 {
     $id = strip_tags($_GET['id']);
@@ -59,6 +75,11 @@ function get_entreprise_par_id($db)
     return $result;
 }
 
+/**
+ * Retrieves the information of the student whose id is stored in $_GET['id'].
+ * @param PDO $db The database connection object.
+ * @return array An array of the student's information.
+ */
 function get_etudiant_par_id($db)
 {
     $id = strip_tags($_GET['id']);
@@ -70,6 +91,11 @@ function get_etudiant_par_id($db)
     return $result;
 }
 
+/**
+ * Retrieves the information of the students.
+ * @param PDO $db The database connection object.
+ * @return array An array of the students' information.
+ */
 function get_etudiants($db)
 {
     $sql = 'SELECT DISTINCT
@@ -96,6 +122,11 @@ function get_etudiants($db)
     return $result;
 }
 
+/**
+ * Delete the student whose id is stored in $_GET['id'] of the database.
+ * @param PDO $db The database connection object.
+ * @return void
+ */
 function delete_etudiant($db)
 {
     $id = strip_tags($_GET['id']);
@@ -113,6 +144,11 @@ function delete_etudiant($db)
     header('Location: index.php?name=stagiaire');
 }
 
+/**
+ * Delete the entreprise whose id is stored in $_GET['id'] of the database.
+ * @param PDO $db The database connection object.
+ * @return void
+ */
 function delete_entreprise($db)
 {
     $id = strip_tags($_GET['id']);
@@ -135,6 +171,11 @@ function delete_entreprise($db)
     header('Location: index.php?name=entreprise');
 }
 
+/**
+ * Retrieves the information of stages from the database.
+ * @param PDO $db The database connection object.
+ * @return array An array of the stages' information.
+ */
 function get_stages($db)
 {
     $sql = 'SELECT * FROM `stage`';
@@ -144,6 +185,11 @@ function get_stages($db)
     return $result;
 }
 
+/**
+ * Retrieves the information of the stage whose id is stored in $_GET['id'].
+ * @param PDO $db The database connection object.
+ * @return array An array of the stage's information.
+ */
 function get_stage_par_id($db)
 {
     $id = strip_tags($_GET['id']);
@@ -155,6 +201,11 @@ function get_stage_par_id($db)
     return $result;
 }
 
+/**
+ * Retrieves an array of the teachers of the database.
+ * @param PDO $db The database connection object.
+ * @return void An array of the teachers' information.
+ */
 function get_professeurs($db)
 {
     $sql = 'SELECT * FROM `professeur` order by nom_prof';
@@ -164,6 +215,11 @@ function get_professeurs($db)
     return $result;
 }
 
+/**
+ * Add a stage to the database using the information stored with the get method.
+ * @param PDO $db The database connection object.
+ * @return void
+ */
 function addStage($db)
 {
     $debut_stage = strip_tags($_POST['date_debut']);
@@ -213,6 +269,11 @@ function addStage($db)
     header('Location: index.php');
 }
 
+/**
+ * Add a student to the database using the information stored with the get method.
+ * @param PDO $db The database connection object.
+ * @return void
+ */
 function addEtudiant($db)
 {
     $nom = strip_tags($_POST['nom']);
@@ -242,6 +303,11 @@ function addEtudiant($db)
     header('Location: index.php?name=stagiaire');
 }
 
+/**
+ * Update the student whose id is stored in $_GET['id'], using the information stored with the get method.
+ * @param PDO $db The database connection object.
+ * @return void
+ */
 function modifEtudiant($db)
 {
     $id = strip_tags($_GET['id']);
@@ -272,6 +338,11 @@ function modifEtudiant($db)
     header('Location: index.php?name=stagiaire');
 }
 
+/**
+ * Add an entreprise to the database using the information stored with the get method.
+ * @param PDO $db The database connection object.
+ * @return void
+ */
 function addEntreprise($db)
 {
     $entreprise = strip_tags($_POST['entreprise']);
@@ -395,6 +466,11 @@ function addEntreprise($db)
     header('Location: index.php?name=entreprise');
 }
 
+/**
+ * Test if the login and password stored in $_POST['login'] and $_POST['mdp'] correspond to a student of the database. Updates the session values if th econnexion is successful.
+ * @param PDO $db The database connection object.
+ * @return bool True if the login and password are correct, false otherwise.
+ */
 function connexionEtudiant($db)
 {
     $login = strip_tags($_POST['login']);
@@ -419,6 +495,11 @@ function connexionEtudiant($db)
     }
 }
 
+/**
+ * Test if the login and password stored in $_POST['login'] and $_POST['mdp'] correspond to a teacher of the database. Updates the session values if the connexion is successful.
+ * @param PDO $db The database connection object.
+ * @return bool True if the login and password are correct, false otherwise.
+ */
 function connexionProfesseur($db)
 {
     $login = strip_tags($_POST['login']);
@@ -443,6 +524,11 @@ function connexionProfesseur($db)
     }
 }
 
+/**
+ * Retrieves the information of the students whose names, companies, and teachers correspond to the information stored using the post method.
+ * @param PDO $db The database connection object.
+ * @return array An array of the students' information.
+ */
 function get_etudiants_recherche($db)
 {
     $nom = strip_tags($_POST['nom']);
