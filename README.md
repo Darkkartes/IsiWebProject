@@ -1,5 +1,5 @@
 ## ISI1-WEB Projet Final 2022-2023
-Coutant Luka, 
+Coutant Luka,  
 Grenier Lilas
 
 # Organisation du binôme 
@@ -8,7 +8,7 @@ Au lieu de nous répartir les tâches selon le modèle standard front/back, nous
 
 # Difficultés rencontrées
 
-L'aspect graphique du site a été maladroit jusqu'à la transition au framework TailWindCSS de la version finale. De plus, le matériel du binôme n'étant pas toujours coopératif (dont des bugs récurrents de MySQL via Xampp, débuggés à coup de délétions forcée de fichiers...), un certain temps a été perdu à trouver mettre en place des solutions.
+L'aspect graphique du site a été maladroit jusqu'à la transition au framework [TailWindCSS](https://tailwindcss.com/) de la version finale. De plus, le matériel du binôme n'étant pas toujours coopératif (dont des bugs récurrents de MySQL via Xampp, débuggés à coup de délétions forcée de fichiers...), un certain temps a été perdu à chercher et mettre en place des solutions.
 
 # Architecture de l'application
 
